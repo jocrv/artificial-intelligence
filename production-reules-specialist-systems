@@ -1,0 +1,144 @@
+ARTIFICIAL INTELLIGENCE
+
+PRODUCTION RULES AND SPECIALIST SYSTEMS
+1 - Understand the limitations of graph representation.
+
+2 - Know the models based on declarative knowledge.
+
+3 - Dealing with knowledge based on production rules.
+
+4 - Understand how inference strategies work.
+
+1 Other forms of knowledge representation
+To represent knowledge, as we have just seen, we must have ways of representing both information and procedures (actions). There are several forms of knowledge representation, such as Semantic Networks, Structured Objects, First Order Logic or Production Rules. The form that we will study in this class are the Production Rules systems (with which applications called Expert Systems are built).
+
+In order for us to understand them, it is necessary to understand which entities we need to deal with. Fundamentally, we can talk about two entities: facts (Truths or information we have about a given context) and knowledge representation (Symbolic formalism that allows us to represent and manipulate knowledge in a given context).
+
+The most common form of representation is natural language. But we can also employ mathematical logic as a representational formalism. Consider, for example, the phrase:
+If we have a formalism to represent that all dogs have a tail, we could write:
+Which in natural language is equivalent to:
+This new fact can now be considered, together with other existing knowledge, to produce new inferences, that is, generate new facts. If this generation has an adequate orientation, we can produce facts that are relevant in a given context, that is, we can find the answers we aim for.
+
+2 Production Rules
+Another way to represent knowledge is through rules. Rule-based systems were very popular in early AI research and are still widely used to model business rules for applications specialized in a given area. Such systems are known as Expert Systems. Rules are a form of representation of knowledge very close to the human way of expressing it.
+
+For example, knowledge such as the ones expressed below can be easily and naturally put into rule-forms: If the temperature is greater than 38 degrees, the patient has a fever. If the patient has a fever for more than 3 days, the patient has an infection. If there is voltage at the input of the source and there is no voltage at the output of the source, then the transformer is burned out.
+
+A rule is formed by a simple or compound premise (using logical operators) and one or more conclusions that are triggered when the premises are true. The premises/conclusions are also called situation/action or even antecedent/consequent of the rules. Rule-based systems use Modus Ponens inference. Thus, given that fact A is true and the implication AGB is true, it follows that fact B is true. The systems that use this representation technique employ techniques of searching rules and inferring new facts, in order to find the facts that have been defined as objective. The idea is to find a path between the facts and knowledge you have and the facts you want to discover.
+
+So storms are likely to form
+
+Also consider that we know the following facts:
+
+Fact 1: The ambient temperature is 37 degrees.
+
+Fact 2: The relative humidity is 81%.
+
+Rules 1 and 2 can, from these facts, conclude new facts:
+
+Fact 3: The weather is hot (from rule 1).
+
+Fact 4: The atmosphere is damp (from rule 2).
+
+Facts 3 and 4 satisfy the premises of rule 3, leading to another fact:
+
+Fact 5: Storms are likely to form.
+3 Inference Strategies
+The way we go through the rules, producing the inferences, that is, choosing which rules to examine and activate, can follow two basic approaches:
+
+Data-driven strategy: In the data-driven strategy (forward chain), all the rules that can be called from known data (facts) are activated.
+
+Objective-driven strategy: In the objective-driven strategy (backward chain), only the rules that have at the conclusion some of the objectives we are looking for are activated. If the premise of the rule we want to trigger is unknown, we establish this premise as the new objective and we start looking for rules that contain it in the conclusion part. Thus, the original objective is provisionally abandoned and will be resumed (by triggering the abandoned rule) when the premise necessary to obtain the original objective has been found. The procedure is recurrent, that is, the objectives are temporarily abandoned as often as necessary, forming a backward chain.
+
+Consider, for example, that we have the following knowledge base:
+
+Rule 1: If the interest rate is low
+
+So the stock market is booming
+
+Rule 2: If the interest rate is high
+
+So the stock market is down
+
+Rule 3: If the dollar rate is low
+
+So the interest rate is high
+
+Rule 4: If the dollar is high
+
+So the interest rate is low.
+
+Also consider that we know the following fact:
+
+Fact 1: The dollar rate is low.
+
+What we want to know is: "What is the stock market trend?"
+
+If we run the search with the data-oriented approach, we will have the chain of inquiry and rule triggering in the following figure.
+Where the rules with circles will be triggered, because the premises allow it, while the others will only be investigated. If the search is with the objective-oriented approach, we will have the chain of investigation and activation of rules in the figure below.
+From the first to the second step, the target would be changed from 'stock exchange' to 'interest rate' and the search for this new target would be started. When it is found (after triggering rule 3), resume one would go to the abandoned rule (rule 1) to search again for the original objective, which would be found after triggering rule 2.
+
+What happens when it is no longer possible to find rules that generate the objectified knowledge in the backward chain scheme or it is no longer possible to generate new knowledge in the forward chain scheme? Well, in this case, the same happens as when you go to a medical appointment and with only the information reported and your knowledge, the doctor is not yet able to produce a diagnosis. It needs to add new knowledge from outside the system. In a consultation, this can represent other questions to the patient or the request for complementary exams. In an expert system built from production rules, the aggregation of new knowledge that is not possible to deduce from the existing rules, usually occurs through questions that the user is asked about the values ​​of the variables that are important in the chain of knowledge necessary to solve the problem that is aimed.
+
+4 Inference Strategies
+The evolution in the development of expert systems with success stories led designers to separate the systems into three parts, in order to facilitate the development of new systems:
+This strategy ended up generating the appearance of environments for the development of specialist systems in which there is some kind of editor and syntax to edit the knowledge base and establish the facts, coupled with an inference engine to carry out the searches.
+
+Such environments, called Expert Systems Shells, allow the user to develop their own knowledge base, in an easier and faster way. Some of these systems also have code translators for some procedural language (C, for example), allowing the system, after being debugged, to be integrated with the rest of the code that has been developed in a traditional way.
+5 Dealing with uncertainty
+Many of the decisions we make are based on some calculation of the probability of getting it right, given the uncertainties about the known facts. Thus, a doctor is able to diagnose even without being sure about the symptoms reported by the patient, or the rates reported by the tests. Likewise, a financial analyst is able to make decisions with good prospects for success, even in the face of uncertainties and conflicts in financial market indicators. This innate ability of the human being is associated with some kind of calculation of probabilities.
+
+However, implementing statistical calculations based on Bayesian probability principles makes expert systems difficult to specify, as rigorously mathematical treatments of probability use information not always available or simplifications that are not clearly justifiable in practical applications. Thus, alternatives were constructed that also deal with the reliability of statements, although on a less rigorous basis and basically linked to set theory.
+
+In most systems, for each statement you can use a confidence factor. This factor is a number between 0% and 100% that is related to the expectation that that statement is true. From these values, a limit is established (usually 50%, but that can often be changed in shells), so that the statements are considered true or false. Thus, if we have a Time variable that has the value Good with a confidence level of 55%, the rule: If Time = Good then..., will be activated as soon as it is examined, since the confidence factor of the value Good is greater that 50%. If the confidence factor were 43%, the rule would not be activated, as the value is less than 50% and the assumption would be considered False.
+
+The calculations with the confidence factors involve the implication (THEN), conjunction (AND) and disjunction (OR) operators, as follows:
+for implication operations the degree of confidence of the premise is multiplied by the degree of confidence of the conclusion
+for conjunction operations the confidence level of all assumptions is multiplied to obtain the confidence level of the composite assumption
+for disjunction operations the confidence level of all assumptions is added and the result is subtracted from the multiplication of the same confidence degrees to obtain the confidence level of the composite assumption
+
+
+For example, suppose we know facts A, C, and E with 90% reliability, and we have the following rules:
+
+If A Then B (70% reliability)
+
+If B and C then D (100% reliability)
+
+If D or E then F (reliability 40%)
+
+If F then G (100% reliability)
+
+The first rule leads to: CF(A) * CF(completion) = 0.9 * 0.7 = 0.63 = CF(B)
+
+The second rule leads to: CF(B) * CF(C) = 0.63 * 0.9 = 0.567 * 1 = CF(D)
+
+The third rule leads to: CF(D) + CF(E) - CF(D) * CF(E) = 0.567 + 0.9 - 0.567 * 0.9 = 1.467 - 0.51 = 0.957 * 0.4 = 0.383 = CF(F)
+
+The fourth rule will not fire because CF(F) = 0.383 < 0.50
+
+When different rules lead to different degrees of confidence for the same variable, in general the calculation of the disjunction for these two values ​​is also applied, as in the case of the OR operator. So, for the example above, if we had a rule that was:
+
+If B then F (90% reliability)
+
+We would have: CF(B) * 0.90 = 0.63 * 0.90 = 0.567 = CF(F)
+
+As the previous CF(F) was 0.383, the new CF(F) = 0.567 + 0.383 - 0.567 * 0.383 = 0.95 - 0.217 = 0.733 = CF(F)
+
+Some systems treat operations with confidence factors in an alternative way, using maximum and minimum functions. Thus, conjunction operations have their resulting confidence factor calculated as the minimum between the confidence values ​​of the various assumptions. The disjunction operation, on the other hand, leads to a confidence factor equal to the maximum of the factors of the assumptions involved. The implication operation, in this form of calculation, is generally also done through the product between the confidence factor resulting from the premise and the confidence factor assigned to the implication. If this type of calculation were performed in the example above, rule 2 would lead to a degree of confidence for D of: CF(D) = Min (0.63 , 0.9) * 1 = 0.63 = CF(D) . Rule 3 would lead to: CF(F) = Max (0.63 , 0.9) * 0.4 = 0.9 * 0.4 = 0.36 = CF(F).
+
+In any case, the attribution of confidence factors relating to implications is the responsibility of the expert who defined the rule and probably comes from experience in applying formal knowledge learned in past use cases.
+what's next in class
+In the next class, you will study on the following subjects:
+
+Concept of fuzzy variable and fuzzy or fuzzy logic.
+Fuzzy function concepts, scalar variable fuzzification and fuzzy operators.
+Building systems with rules-based models that manipulate fuzzy variables.
+CONCLUSION
+In this class, you:
+
+Understood the limitations of the graph search technique.
+He learned that there are other ways to symbolically represent knowledge.
+He learned to represent knowledge with production rules.
+He learned how to work and the inference strategies used in systems based on production rules.
+Understood the mechanism of association between uncertainty and knowledge expressed in production rules.
+Experienced the use of an expert systems construction tool
