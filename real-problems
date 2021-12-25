@@ -1,0 +1,108 @@
+ARTIFICIAL INTELLIGENCE
+
+APPLYING AG TO REAL PROBLEMS
+HI!
+In this class, you will:
+
+1. Understand which real-world problems are solvable using GA.
+
+2. Model the chromosomal representation of different real-world problems.
+
+3. Apply genetic operators in solving optimization problems.
+
+4. Compare alternatives for applying the mutation operator.
+
+1 Applying Genetic Algorithms
+As we saw in the last class, each problem for which an optimized solution is sought requires a different approach in order to use the Genetic Algorithms technique.
+
+Starting with the modeling of the chromosome, passing by how to apply the main operators of crossing and mutation and ending with the correct parameterization of the genetic operators, each problem requires the designer to make adequate choices to enable the correct evolution of the solutions over successive generations, as well as ensuring the necessary efficiency, especially in terms of time, since GA are known to be computationally intensive models.
+Heads up
+
+This class prioritizes the presentation of some classic examples of the use of GA, presenting step by step the modeling and application choices of the genetic operators considered most suitable for each of the problems.
+
+2 Traveling Salesman Problem
+The freer and more complete version of the traveling salesman problem assumes that we must travel through several cities in any desired order, passing through each city only once, trying to optimize the route (the total distance covered, for example). This is an NP-hard problem, which means that traditional methods have a runtime that grows exponentially with increasing number of cities.
+
+To get an idea of ​​the amount of processing required if we use a brute force algorithm, just imagine that we would have to investigate, for N cities, (N-1)l Paths. Considering the time to investigate a path proportional to its size (N), then we would have a total investigation time proportional to N*(N-1)! = NI. For N=50 this would be 501, which is an astronomical and unfeasible number to run on any computer.
+The heuristic approach of the Genetic Algorithms, suitable precisely for huge search spaces, can be applied to this problem, as long as we can content ourselves with obtaining a very good solution, although without guarantee of being the best solution.
+
+One way to model the problem is to create a chromosome where each gene is one of the cities. The chromosome size will therefore be equal to N, which is the number of cities. The problem then becomes of the same nature as the previous problem, where we essentially want to find the chromosome with the most suitable combination of genes.
+
+To illustrate another type of cross, we are going to perform the cross based on the maintenance of the order of the genes (OBX for the acronym in English Order Based Crossover). In this technique, gene positions within the chromosome are randomly chosen to be swapped. In this phase, the positions that were not chosen are copied from the paul to the son1 and the others are filled with genes from the father2 in exactly the same order in which they appear in the father2. For child2 the process is repeated, using now the copy of the fixed positions from parent2.
+
+See the example for two chromosomes with city sequences that have been assigned letter ices (A, B, C...):
+
+Father1: BEADGHFC Son1: BEGDHAFC
+
+Father2: GCFHEDAB Son2: GCEHDFAB
+
+Positions: * * *
+
+For the mutation process, we will also present another option, which consists of choosing a cutoff point on the chromosome and swapping the two sublists defined by this cutoff point. For example:
+
+Chromosome before: A BCDEFG H
+
+Cutoff point: I
+
+Chromosome after: F G HA 8 C D E
+
+The evaluation function can be simply the sum of the distances covered by the suggested sequence, the selection method can also be roulette.
+3 Revisiting the problem of finding the maximum value of a function
+Let's revisit the problem of finding the maximum value of a function now showing aspects of the search evolution in a more complex, multimodal function and varying the parameters of the operators to compare the effects of varying the parameters of the genetic operators, especially with respect to a distinct type of mutation that will be explained later.
+
+Let's work with the function f(x) = sin(x/2)+cos(2x)/1.5, which has the graph on the interval -14<x<9 given by figure 7.6 (already with an initial population of 20 individuals) .
+The internal representation of the chromosome takes into account the threshold values ​​of the real number scale that delimit the search space (Lower Value – VI and Upper Value – VS) to transform the real number scale into an integer scale with a size 32-bit fixed. Thus, each element of the population is composed of an unsigned 32-bit binary representation. Therefore, there are 232 possible values ​​for an element and, therefore, the resolution of the solutions is 1/232. The scheme is illustrated in the figure.
+
+32-bit chromosome (internal representation):
+4 Evaluation
+At each generation, the current population is evaluated according to the aptitude evaluation function, which is the function to be maximized. Each element of the population is evaluated and the relative evaluation of the element in relation to the sum of the evaluations of all elements of the population is calculated. As the values ​​of f(x) can be negative, so that there is no undue cancellation of values ​​when performing the summation, the following strategy is used: a value 10% below the worst assessment value is used as a reference value. element of the population. The distance of the value of f(x) of each population element from the reference value is then considered to be the absolute evaluation of the element and is therefore always positive. The reason for taking as a reference a value slightly lower than the worst evaluation is to give this element a chance greater than zero to survive (which would not happen if the reference value were the evaluation value of the worst element). The relative rating of each element is then calculated as the absolute rating divided by the sum of the absolute ratings.
+5 Process of elitism
+The elitism process can be used by the user's choice and consists of choosing the elements according to their relative aptitude. The N fittest elements of the current population are chosen to be cloned in the next population, regardless of the selection process, which can even select them again due to their high suitability. The process of elitism occurs right after population assessment and before crossing and mutation.
+6 the crossing
+The crossing is carried out between two elements (father and mother) of the population chosen at random. The probability that an element is chosen for crossover is given by the Crossover Rate. The first task is, therefore, the choice of the elements that will be crossed. When two elements are selected, then the actual crossing operation is performed. The crossing operation can be performed in different ways. In this application, a one-point crossing is used, chosen randomly for each pair of elements that you want to cross.
+
+After choosing the cutoff point, the resulting elements (children) are generated by juxtaposing the first part (Bits to cutoff) of the parent element with the second part (Bits after the cutoff) of the parent element, to form child 1. For child 2, the first part of the mother and the second part of the father are used. Finally, the parent elements are replaced by the child elements in the new population. The crossing scheme is illustrated in the figure.
+7 Mutation
+The mutation is carried out with the elements chosen to be part of the new population. Depending on the type of mutation that is selected, the mutation is made in different ways:
+
+Darwin's mutation
+
+The mutation is carried out following Darwin's precepts, who claimed to be completely random, and can generate changes for better or for worse in the elements of the population. Changes for the better probably result in elements that are better adapted and, therefore, have a better chance of surviving the natural selection mechanism and passing on their characteristics to future generations. In practice, in this type of mutation, for each element of the population that does not come from elitism, drawings are made for each bit of the chromosome that makes it up, with the probability of choice for mutation given by the mutation rate defined by the user in the program interface . If the bit is chosen to undergo mutation, it undergoes a change that complements its value (complement to one), that is, if it is 1 it becomes 0 and if it is 0 it becomes 1.
+Some experiments can be performed with the Lamark mutation procedure compared to the traditional Darwin mutation.
+
+The main result that can be highlighted is that, using the Lamark mutation, it is clear that the maximum point is not lost during the training evolution, even without the presence of elitism. Another effect is the increase in the mean assessment value of the population and the decrease in the standard deviation of this mean assessment value.
+
+The following case illustrates the above.
+
+The figure exemplifies this result of the evolution of training using Darwin's mutation, without elitism. It is observed that during the 100 generations in which the genetic operators were applied, there was a variation to less than the maximum point reached in each generation (upper line of the trend graph in the figure).
+In the case of the Lamark mutation, using the same conditions for the genetic operators (including the absence of elitism) and number of cycles, it is observed that there was no variation to minus, that is, loss, of the maximum point.
+
+The result can be seen in the graph in the figure.
+To illustrate the increase in the population mean value, look at the graph in the figure, where four cycles of 100 generations each are compared, alternating between the Darwin mutation in the first (100 to 200 generations) and third cycles (300 to 400 generations) and the Lamark mutation in the second (200 to 300 generations) and fourth cycles (400 to 500 generations). Note the mean value increase during training cycles with Lamark mutation.
+Lamarck mutation
+
+The mutation is made according to Lamark's theory, which advocated that the environment influences the mutations that species undergo. Thus, adverse environments force the occurrence of mutations that make the elements better adapted. In practice, in this type of mutation, all elements of the population can undergo some type of mutation proportional to the defined mutation rate. However, the mutation is adaptive, that is, it occurs with different intensity according to the degree of adaptation (adaptation) of each element of the population. Thus, in the best adapted elements, the mutation occurs only for the least significant bits, which represents a fine adjustment in the value of the best elements in the population. In the elements with the worst evaluation, on the other hand, the adjustment takes place in any of the bits, representing a much larger excursion in the search space.
+
+Thus, very fit elements suffer only small mutations, which do not move them too much in the search space, while elements with poor ratings are eligible for mutations in more significant bits, potentially causing large displacements in the search space. The determination of which is the number of bits of the representation that will be chosen for mutation, is done in a linear way with the evaluation and with the quantity of elements of the population.
+Some experiments can be performed with the Lamark mutation procedure compared to the traditional Darwin mutation.
+
+The main result that can be highlighted is that, using the Lamark mutation, it is clear that the maximum point is not lost during the training evolution, even without the presence of elitism. Another effect is the increase in the mean assessment value of the population and the decrease in the standard deviation of this mean assessment value.
+
+The following case illustrates the above.
+
+The figure exemplifies this result of the evolution of training using Darwin's mutation, without elitism. It is observed that during the 100 generations in which the genetic operators were applied, there was a variation to less than the maximum point reached in each generation (upper line of the trend graph in the figure).
+To illustrate the increase in the population mean value, look at the graph in the figure, where four cycles of 100 generations each are compared, alternating between the Darwin mutation in the first (100 to 200 generations) and third cycles (300 to 400 generations) and the Lamark mutation in the second (200 to 300 generations) and fourth cycles (400 to 500 generations). Note the mean value increase during training cycles with Lamark mutation.
+what's next in class
+In the next class, you will study on the following subjects:
+
+The difference between Symbolist and Connectionist models
+The inspiration of connectionist models of neural networks
+The different topologies of neural networks
+How a simple neural network works
+CONCLUSION
+In this class, you:
+
+Understand which real-world problems are solvable using AG.
+Modeled the chromosomal representation of different real-world problems.
+It applied genetic operators to solve optimization problems.
+It compared alternatives for implantation of the mutation operator.
