@@ -1,0 +1,73 @@
+ARTIFICIAL INTELLIGENCE
+
+FUZZY LOGIC AND FUZZY RULES BASED SYSTEMS
+HI!
+In this class, you will:
+
+1 - Understand the concept of approximate reasoning.
+
+2 - Master the use of nebulous sets.
+
+3 - Conceptualize a nebulous or fuzzy system.
+
+4 - Understand some of the characteristics of the Fuzzy domain.
+
+5 - Understand how logical operators work.
+
+1 Fuzzy Sets
+A fuzzy set, also called a fuzzy set, is a function that allows the input of a scalar value and outputs a number between zero and one, which represents the degree of membership (µ) of the input to the fuzzy set. For example, we can define the set of tall people with two different types of roles illustrated in the figure.
+For this case, in the fuzzy function, people with height less than 1.70m have a membership degree of 0 in relation to the group of tall people, that is, they are definitely not tall. People taller than 1.90 m have membership level 1 in relation to tall people, that is, they are definitely tall. People with height between 1.70m and 1.90m, on the other hand, have some degree of belonging (0< µ <1) to the group of tall people. Another example is in the figure.
+To calculate the degree of membership of a variable to a fuzzy set, you can use any function that associates the domain of the variable you want to fuzzify with the image of the interval [0,1] corresponding to the degree of membership of the domain variable to the set modeled by the fuzzy function. The format of membership functions can vary widely. Some of the main functions used in the literature are:
+2 Fuzzy Logic Systems
+A fuzzy system deals with fuzzy sets to perform the tasks of fuzzyfication of real world scalar values, so that they can be manipulated as linguistic entities (tall people in the case of the figure) and, after applying inference rules that are expressed with these linguistic entities, but actually deal with membership values, produce through a process called defuzzyfication the scalar values ​​that apply to the output to the real world.
+
+Rules: Rules combine linguistic variables (hot, high, cheap, etc.), quantifiers (very, little, extremely, etc.), logical (AND, OR, NO) and implication (IF, THEN) operators.
+
+For example:
+
+IF temperature is too hot AND flow is low THEN turn tap too right.
+
+IF temperature is lukewarm AND flow is medium THEN turn the tap a little to the left.
+
+Defuzzyfication: Defuzzification combines the values ​​produced by the different rules that have been activated for a given input, producing, from the combination of fuzzy sets, an adequate scalar output.
+
+The model can be represented as in the figure.
+3 Nomenclatures
+Fuzzy set domain is the universe of possible values ​​for a given set. For the fuzzy set of tall people, seen above, the domain is open (from 0 to +). As for the group of middle-aged people, the domain is closed (20 to 70).
+
+Set support is the subset of the domain for which the membership degree is greater than zero. For the middle-aged pool, it's the 30-60 range.
+
+Singleton set is a fuzzy set in which the support is a single domain point. For example, the set of ideal notes in a domain from 0 to 10, can be a Singleton set in which only the note 10 has µ =1 and the others have µ =0.
+
+Discourse universe is the complete variation space of membership values ​​for a given variable. For example, for a temperature variable modeled like this:
+
+The universe of speech is from 100 to 360 degrees.
+Operations with Fuzzy sets aim to find the degree of veracity of the statements that are part of the rules' antecedents. These basic operations (Union, Intersection, Complement) are performed with the degree of relevance (i) of a value to the set. To know if a value belongs to the Fuzzy set, we must know if the value belongs to the set's Domain, to its Support and if it is above the a-cut limit.
+
+Operations can be applied to the same variable or to different variables. Examples for a variable: If age is child OR age is old then flu risk is high If age is NOT middle age then heart attack risk is low
+
+Example for two variables: If temperature is high AND pressure is low then flow is high
+
+For the complement operation (Ex.: If X is NOT A then...), the way of calculating the antecedent is generally: 1 - µA(x). For the Union and the intersection, there are different ways, proposed by different authors, to carry out the operations, as shown in the following table:
+Exercise: Given the sets and the table below, determine the degree of relevance of each operation, according to the suggested calculation methods (Zadeh and Product):
+4 Quantifiers
+Quantifiers are terms that modify the original Fuzzy sets, from some mathematical operation done with them. The main quantifiers are of the following types:
+
+Boost: very, extremely, super, hyper.
+Attenuator: a little, lightly, discreetly.
+Approximator: around, around, approx.
+Restrictive: maximum from, no greater than.
+To model the calculation of the influence of the enhancement quantifiers on the original Fuzzy sets, we can use integer powers. That is, µenhancer of A = (µA)n . In this way, for different values ​​of n we could model different enhancement quantifiers, as shown in the figure.
+On the other hand, to calculate the influence of attenuation quantifiers on Fuzzy sets, we can use fractional powers. That is, µattenuator of A = (µA)1/n. Therefore, for different values ​​of n we could model different attenuation quantifiers, as shown in the figure.
+what's next topic 
+In the next topic, you will study on the following subjects:
+
+Inference in Fuzzy Rule Systems.
+Combining Distinct Fuzzy Rules Results.
+Defuzzifying fuzzy values ​​to get scalar output values.
+Applying a fuzzy rules system to control a real plant.
+CONCLUSION
+Understood the concept of approximate reasoning.
+It dominated the use of fuzzy sets in fuzzy systems.
+Understood the main features of the Fuzzy domain.
+Understood the functioning of logical operators and calculation formulas proposed by different authors.
