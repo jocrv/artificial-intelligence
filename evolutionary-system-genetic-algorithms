@@ -1,0 +1,152 @@
+ARTIFICIAL INTELLIGENCE
+
+EVOLUTIONARY SYSTEMS AND GENETIC ALGORITHMS
+Understand the concept of optimization and the proposed classical solutions.
+
+2. Understand the genetic inspiration of the computational model of Genetic Algorithms.
+
+3. Understand the functioning of the evolution cycles of a genetic algorithm.
+
+4. Understand the importance of correct parameterization of genetic operators.
+
+1 The optimization problem
+An optimization problem consists of finding, among the many possible solutions to a problem, the one or those that represent the best solution. Naturally, the concept of best applies to some or some criteria, such as financial cost, time, distance, safety or any other aspect that one wishes to optimize.
+
+Any optimization process can be summarized in how to find the parameters that minimize (or maximize, depending on the problem) a given multi-parameterized function (of many parameters), that is, find the MIN ( f( x1, x2, x3,... .xn)).
+
+Every maximization problem can be turned into a minimization problem and vice versa. For example, taking the mono-parameterized function y = f(x) = 2-x2, in the interval (-2<x<2), we will have a single point (x=0) that maximizes the function
+
+However, if we multiply the function f(x) by -1, then calculate the function g(x) = -f(x) = x2 – 1, we would have one and the same point (x=0) that minimizes the function to the same range. So, in general, we can study optimization just as a minimization problem or just as a maximization problem, because the point(s) of minimization of the function and the maximization point(s) of the inverse function are the same.
+
+When the chosen approach is to study optimization problems as minimization problems, the value of the function can be seen as a “cost” to be minimized.
+
+Even working with a mono-parameterized function, it is possible that it has, within a given range, several relative minimum or maximum points, known as local minimums and local maximums, with only one global minimum or global maximum point in the interval . Such a function is called unimodal.
+
+Take, for example, the function f(x) = x sin (3 x) in the interval -5<x<10, whose graph is shown in Figure 1. From the point of view of maximization it is unimodal because, in the interval considered, it has a maximum point for x = 8.91 where f(x) = 8.92.
+A multimodal function, on the other hand, has more than one global maximum for a given interval. Take, for example, the function f(x) = sin (x/2) + cos (2x)/1.5 in the interval -14<x<20, seen in figure 2. The function has maximum points at x = -9.42, x = 3 and x = 15.71. At these points we have f(x) = 1.66666..., which is the maximum value that the function reaches in this interval.
+The function to be optimized is known as the Objective Function and the interval in which a solution is sought is the Search Space. For the function in figure 6.2 the search space for values ​​of x is the range between -14 and 20.
+
+Function parameters may also be subject to restrictions expressed through equations or inequalities, such as:
+
+Minimize f(x) = x2 + y2 + 4
+
+subject to the restrictions of: 2x - 3y < 5 and of: x + y = 7.
+
+When the objective function and the constraint functions have only linear relations (arithmetic operators of addition, subtraction, multiplication and division), the problem is one of Linear Programming. If, however, there is some other operator in the functions, such as exponentiation, logarithms, trigonometric expressions or any other non-linear operators, the problem is Non-Linear Programming.
+
+The objective function parameters can also be continuous or discrete.
+
+Continuous: Continuous parameters can lead to situations where there are an infinite amount of possible solutions (combinations of different values ​​for the parameters that optimize the objective function and do not hurt any restrictions).
+
+Discrete: Discrete parameters always have a finite amount of solutions, since the amount of discrete values ​​in an interval is also finite and any solution is a combination of these values. Within discrete parameter problems, an important class of problems are those that search for a specific sequence of values, such as a sequence of tasks or a sequence of places to be visited. Such problems are known as Combinatorial Optimization problems.
+2 Solutions to the optimization problem
+There are many different classes of techniques applicable to optimization problems. Some of course apply better to some problems than others, but all have some restriction. We will comment on some of these classes of solutions below.
+
+A first idea, using computational brute force, might be to simply randomly generate solutions, that is, random values ​​for the parameters within the search space and test the generated solutions for each set of parameters, comparing the test results. This method is known as Random Search and its main deficiency is the great computational effort required to find a satisfactory solution, which may even, depending on the search space of the problem, make it virtually impossible to obtain a satisfactory solution.
+
+There are, on the other hand, classical methods, called Analytical Techniques, such as the Newton-Rafson method, which use exclusively mathematical techniques to determine the maximum and minimum points of the functions. Such methods are generally based on differential calculus techniques, which in turn require that the functions be continuous and differentiable in the search space, characteristics that are often not found in real-world problems. In these techniques it can still be difficult to determine the maximum or minimum points when the functions have many parameters and are intensely multi-modal.
+
+On the other hand, methods known as Hill Climbing, such as the Gradient Descending method or the Simulated Annealing method, look in a small search space around a solution, seeking to locate the direction in which the function increases or decreases. Such methods are fast, but they are very sensitive to the existence of local maximums or minimums.
+
+Heuristic Methods, such as Genetic Algorithms, have as their main characteristic the maintenance of a population of solutions and the exploration of the search space both locally around existing solutions and globally, by opening new search points far from the local solutions. Some of the main advantages that genetic algorithms have are:
+The possibility of performing simultaneous exploration at different points in the search space (which can be better explored using parallel computing);
+Operation in continuous or discrete search spaces; The fact that they are not sensitive to the existence of local minima;
+The ability to discover multiple solutions (particularly useful for multi-modal functions);
+The characteristic of not imposing special conditions on the function to be optimized (continuity, existence of derivative, etc.);
+The ability to work well in search spaces with many dimensions;
+The ability to model constraints and simultaneously optimize multiple functions, even if conflicting;
+The ability to be easily merged with other heuristic techniques, composing hybrid solutions that explore the individual qualities of each specific technique; and,
+The characteristic of being easy to implement computationally, not depending on a deep understanding of the problem to be optimized and its modeling.
+However, such methods are computationally intensive and may take time to converge to an acceptable solution (depending on the parameterization, as we will see later). Therefore, its main restriction is its use in optimization problems that require real-time answers.
+3 The original inspiration of Genetic Algorithms
+The inspiration for the model of genetic algorithms comes from the traditional study of genetics. These algorithms are inspired by the principles enumerated in 1859 by the English naturalist and physiologist Sir Charles Darwin in his book The Origin of Species.
+
+According to Darwin:
+
+"The better an individual adapts to their environment, the greater their chance of surviving and generating offspring".
+
+Darwin observed that in nature, the individuals best able to compete are the ones who are best able to survive in hostile environments.
+
+Darwin also noted that the ability to adapt to an ever-changing environment is essential for species survival. Therefore, the set of characteristics of an individual determines its ability to survive and these characteristics, in general, are determined by the genetic material of each one and controlled by basic units called genes, which make up a set called chromosome.
+
+Darwin discovered that changes in genetic material are the basis for the evolution of species. He also noted that this process takes place through a combination of mechanisms such as the natural selection of the fittest, genetic recombination arising from sexual reproduction and random mutations that occur with individuals of the species over many, many generations. The combination of these mechanisms allows the emergence of individuals with more suitable combinations of genes, which will guarantee to these individuals in particular the necessary advantages to survive in competitive environments and to the species as a whole a continuous evolution of its individuals.
+4 The computational model of species evolution
+In the 70s, John Holland proposed computational models, which he called Genetic Algorithms, which mimic the evolution process described by Darwin.
+
+Genetic algorithms treat optimization problems as a search for fitter individuals, manipulating populations of individuals within a population, treating each individual as one of the potential solutions to the problem.
+
+The computational model operates on a coded representation of each solution, equivalent to the genetic material of individuals of a species in nature.
+
+The solutions are encoded in strings of bits and each solution is associated with a measure of quality that reflects the capability of each individual in relation to the others.
+
+As in nature, a selection mechanism forces the continuous evolution of the quality of generations.
+
+The greater the measure of an individual's quality, the greater their chances of reproducing and surviving the next generation.
+
+The recombination of genetic material is simulated through a crossover mechanism that exchanges bits between the strings of bits of individuals treated as the parents, which are then used to constitute other individuals, called children.
+Another operation causes sporadic and random changes in bit strings, emulating the so-called genetic mutation in individuals of a species in nature.
+
+The model proposes the creation of an initial population, formed by a random set of individuals that is constituted by possible solutions to the problem.
+
+During the evolutionary process, each individual is given a grade, reflecting their ability to adapt to a particular environment. This population is evaluated at each generation, with a part of the most adapted individuals being kept, while the others are discarded, in a process that models natural selection.
+
+The members maintained by natural selection can undergo modifications in their fundamental characteristics through mutations and crossings, generating offspring for the next generation. This process is repeated until a satisfactory solution is found.
+
+The process of genetic algorithms consists, therefore, in the sequential application of some genetic operators that emulate the characteristics identified by Darwin in the natural evolution process of species and which is sufficient to evolve a population of initial solutions to a given problem to the point of finding a satisfactory, although not necessarily optimal, solution to the problem, constituting a robust and adaptive search engine.
+5 Implementation of genetic operators
+Selection
+
+The purpose of this operation is to do parent selection to increase the probability of reproducing members of the population who have good objective function values. One of the most popular ways to implement this operation is through the process known as roulette. This method uses a representation in which each individual has a “slice” on the wheel of a roulette wheel that is proportional to their skill level. The selection is analogous to a random spin of this roulette wheel in order to select the individual corresponding to the slice (circle arc) where the roulette pointer stopped after the roulette wheel scroll ended.
+
+To visualize this method, consider a circle (or roulette) divided into n regions (where n is the population size), with the area of ​​each region being proportional to the individual's fitness. After each spin of the roulette, an individual is chosen. This method is called universal sampling.
+
+stochastic
+
+Each individual occupies a share proportional to the value of the objective function. Thus, individuals whose regions have a larger area will be more likely to be selected, and may even be selected more than once. See the example in the figure, where there are 10 elements in the population (element 0 through element 9), sorted by aptitude (element 0 is fittest and element 9 is least fit). Note that the fitness of each element determines the size of its slice and therefore the relative probability of selection of that element in each draw (roulette round).
+6 The tournament method
+There are also other selection methods, the main one being the tournament method. In this method:
+
+Crossing
+
+Crossover: Once the parents are chosen, a genetic crossover operator is used. Crossing is responsible for the recombination of parental traits during reproduction, allowing future generations to inherit their traits. It is considered the predominant genetic operator and is applied with probability given by the crossover rate which, in practice, must be greater than 50% of the population each generation. Some of the main ways to use this operator are:
+
+One-point crossing.
+A crossing point is chosen and from this point onwards the parents' genetic information will be exchanged:
+Multipoint crossing.
+It is a generalization of the idea of ​​exchanging genetic material from certain points on the chromosome, where, instead of a single point, many crossing points can be used, allowing for less granularity in the parts taken from each of the parents involved in the crossing .
+
+Uniform crossing.
+In this type of crossing, crossing points are not used, but it is determined, using a global parameter, what the probability of each gene being exchanged between the parents is determined.
+
+Mutation
+
+Mutation operators are necessary for the introduction and maintenance of the genetic diversity of the population by arbitrarily altering one or more genes in the genome of a randomly chosen individual, thus providing a means for the introduction of new elements into the population. The mutation ensures that the probability of reaching any point in the search space will never be zero. However, the mutation operator should be applied to individuals with a generally small probability, as there is a risk that it asks for important genetic information and tends to promote a random search in the search space. Typically, the mutation rate is inferred from 5% of individuals, in order to maintain the characteristics of the population but maintain the ability to introduce genetic diversity.
+
+In the case of binary chromosomal representation, the mutation consists of replacing with a certain probability (Pm) the value of a bit. A bit of the selected chromosome is randomly chosen. Next, a random number between 0 and 100 is generated, and if it is less than the rate Pm, this bit is inverted. A variant is, after the described procedure, to randomly generate the value (0 or 1) of the chosen bit. In this case, the mutation rate will actually be half the Pm rate.
+7 The adjustment of genetic parameters
+Let's now analyze how some parameters influence the behavior of genetic algorithms.
+
+Population Size
+
+Population size affects the overall performance and efficiency of genetic algorithms. A small population provides little coverage of the search space, causing a drop in performance and a delay in finding a satisfactory solution. A large population provides better coverage of the problem domain and prevents premature convergence to local solutions. However, with a very large population, there is a need for larger computational resources, or a longer processing time.
+Cross Rate
+
+The higher this rate, the faster new structures will be introduced into the population. However, this can generate an unwanted effect as the majority of the population will be replaced and high-suitability structures may be lost. On the other hand, with a low crossover rate value, the algorithm can become too slow, impairing convergence. Typical mating rates are between 50% and 90% of the population.
+mutation rate
+
+A low mutation rate prevents a given position from getting stuck in a value, in addition to allowing you to arrive at any point in the search space. At a very high rate the search becomes essentially random. Typical mutation rates are between 0.5% and 5% of population genes.
+
+what's next in class
+In the next class, you will study on the following subjects:
+
+What real-world problems are solvable using AG.
+The chromosomal representation of different real-world problems.
+Genetic operators in solving optimization problems.
+The basic functioning of other bio-inspired evolutionary models.
+CONCLUSION
+In this class, you:
+
+Understood the concept of optimization and optimization problems.
+Understood the genetic inspiration of a computational optimization model.
+Understood the functioning of the evolution cycles of a genetic algorithm.
+Experienced how genetic operators work.
