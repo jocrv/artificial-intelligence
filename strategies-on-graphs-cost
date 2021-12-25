@@ -1,0 +1,77 @@
+ARTIFICIAL INTELLIGENCE
+
+SEARCH STRATEGIES ON GRAPHS WITHOUT COST AND COST
+
+1 - Understand what a search strategy in a state graph is.
+
+2 - Build search trees that implement both depth and breadth search strategies.
+
+3 - Characterize problems that present costs to operations.
+
+4 - Represent graphs of states with costs.
+
+5 - Understand the concept of solution efficiency.
+
+6 - Apply search strategies that seek to optimize costs.
+
+7 - Apply heuristic search strategies.
+
+1. Introduction
+As we saw at the end of the last lesson, in the search tree each state should only appear once in each branch of the tree, so that the application of an operator on a certain state does not lead to another state that is already in in the tree in the same branch, characterizing a cycle that is not desirable. So, if this situation presents itself, this new state must be discarded. This is to say that this operator is not applicable to this state in this specific branch of the tree.
+
+2 Description of in-depth search strategies
+The simplest possible strategy is the in-depth search. This method looks for any solution (which is not guaranteed to be the best) and finds it or not (the method does not guarantee that a solution will be found).
+
+The strategy is to expand the states from the initial state, applying any of the possible operators applicable to that state. The choice of operator can be random or follow an arbitrary sequence of tests for the possibility of applying the operators. If there are no possible operators to apply or if all the generated states are already in the tree, the method fails. The method succeeds only if it reaches a final state.
+
+There is also a change that improves the depth search. In this method, when the algorithm fails to reach m final state, according to the criteria of the irrevocable method, it turns to the parent node and chooses another operator. If it is not possible to choose another operator for this node, go back one more level, repeating the process until the root node is reached.
+
+Because of going back to the parent node, this method is also known as backtraking. Acting in this way, the algorithm guarantees that, if there is any solution, it will be found, since all paths will be investigated (the search is exhaustive). See an illustration of the strategy in the chart in the figure.
+3 Description of the wide search strategy
+In this method, instead of choosing an operator to be applied in a state, we generate a new state and repeat the process successively. So, what you do is investigate all the operators that can be applied to that node and generate all possible children. See the explanatory chart for the strategy in the figure.
+This method always finds the way if it exists. As it expands one level at a time, the method also finds the shortest path (in number of transitions) between the root and the final state. However, the amount of evaluated possibilities is very large, which makes the method computationally intensive.
+
+4 graphs with cost
+In some types of problems, the path from one state to the next has an associated cost. In practice, all important routing problems have costs involved. This is the case of cargo transport routes, electricity distribution routes, telephone call forwarding routes, etc.
+The problems of finding a route from one point to another are a simplification of the more general problem known as the “traveling salesman problem”. In the original traveling salesman problem, we have a set of cities connected by roads, which have a connection cost between them and you want to travel through all cities at the lowest possible cost without repeating any city. The figure shows a possible configuration for this interconnection between cities, in which cities are the vertices of the graph and the connections between them are the edges of the graph.
+
+Cost: You can imagine that this cost is 1 the distance between them or the fare or travel time or any other combination of factors that produce a cost.
+
+In the simplified version, useful for a routing problem, the objective is to take the clerk from one point to another, at the lowest possible cost. If we want to go from city A to city E, we have different costs for each route. Some of these costs are:
+
+ABCE - cost: 3+5+8 = 16
+
+ACE - cost: 4+8 = 12
+
+ACDE - cost: 4+7+4 = 15
+
+ADE - cost: 6+4 = 10
+
+5 Greedy search or closest neighbor search
+One possible strategy, although quite simple, is the nearest neighbor search or greedy search. In this case, we choose at each step the unvisited neighbor that presents the lowest cost (we should not repeat cities, at the risk of introducing cycles, as in searches not weighted by cost).
+
+This strategy is equivalent, in some sense, to an irrevocable search, as it does not guarantee finding a path, much less the one with the lowest cost. In the previous example, following this strategy, the chosen route would be ABCDE, which would represent a cost of 3+5+7+4=19. As can be seen, compared to the calculated cost for the other paths, this path is worse than all those suggested above. So this is not a good strategy.
+6 Ordered search or search by minimum sum path (Dijikstra algorithm)
+Another strategy is to store the sum of the cost of each path and look at each step for the path that will result in the smallest sum. This strategy is similar to the search in width or Dijikstra algorithm. The difference is that, if a node must be placed in the tree, but it already appears in some other path (another branch different from this one), there must be a comparison between the total costs of these two nodes and the one with the highest cost must be eliminated. Let's analyze step-by-step the application of the algorithm to the previously presented graph (A→E):
+After this step, the total cost of each path is: AB=3, AC=4 and AD=6. Choosing the lowest total cost (AB), we expand one level.
+
+As the new node already appears in the list, we must compare the total cost of this appearance in the list (ABC:3+5=8) with the previous one (AC:=4). As the previous one has lower cost, we abandoned this insertion and, as there are no more paths to analyze for this node (we say it is closed), we return to the previous one (A) and choose the second lowest cost among the available paths (AC=4 ).
+Note that node A was not placed because the ACA path should not be considered, as node A is already in this branch of the tree. Node B, which already appears in another branch, must now be checked with respect to the total cost, which entails comparing the cost of path ACB (5+4=9) with the cost of path AB (3).
+
+Thus, the ACB path should be neglected. Also node D already appears in another branch, so that comparing the cost of the AD path (=6) with the cost of the ACD path (4+7=11), we disregarded the latter. Also note that the target node (E) is already in the tree, but we must continue processing until all nodes are closed.
+Both node E and node C already appear in the list. For node C, we have that path ADC has a cost of 13 and path AC has a cost of 4. Therefore, we neglect C as a child of D.
+The ACE path has a cost of 12, while the ADE path has a cost of 10. We despise ACE. Soon
+Now only node E remains open. As it is terminal, we can stop the process, as any path derived from it will be greater than the path to it, given that the cost is always positive. The path found (ADE) is the optimal (least cost) path. To find this path, the algorithm closed 2 nodes off the optimal path (B and C) and 3 on the optimal path (A, D and E).
+
+what's next in class
+In the next class, you will study on the following subjects:
+
+Systems with models based on declarative knowledge.
+Inferences and search strategies most used in rule-based systems.
+Uncertainty modeling in rule-based systems.
+CONCLUSION
+In this class, you:
+
+Understood the role of strategy in graph search.
+Learned to apply depth search and width search strategies on free graphs.
+Learned to apply the ordered search strategy on costed graphs.
