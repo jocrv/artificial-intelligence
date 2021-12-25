@@ -1,0 +1,149 @@
+
+ARTIFICIAL INTELLIGENCE
+
+CONNECTIONIST MODELS AND NEURAL NETWORKS
+you will:
+
+1. Understand the difference between Symbolist and Connectionist models.
+
+2. Understand the inspiration of connectionist models of neural networks.
+
+3. Examine the different topologies of neural networks.
+
+4. Understand how a simple neural network works.
+
+In the previously discussed techniques of Expert Systems or Fuzzy Systems, the common feature is that the knowledge had been produced by someone and represented symbolically in the form of rules. These systems, as well as the conventional systems built with techniques for making algorithms, are called Symbolists, as they symbolically represent knowledge.
+
+The techniques we'll start examining in today's class are called Connectionists, as knowledge is not expressed in commands or rules, but stored in connections that link primary elements (or nodes or neurons) into networks of connections, better known as Neural Networks (or neural, for some authors).
+
+More than that, the difference lies in that such systems do not have knowledge previously introduced by a programmer, but rather learn from examples that are shown to these networks. In other words, these models depend on an initial training phase, during which they incorporate information that enables them to make future decisions based on the knowledge learned.
+
+In essence, a connectionist model knows nothing, that is, it has no stored knowledge, until it is trained to solve a problem. From training, knowledge is learned, but it cannot be identified by a human specialist, as it is distributed by values ​​that model the connections between neurons and that have no identifiable meaning. This implies that neural networks can solve several problems and make classification, prediction or grouping decisions, but they are unable to justify such decisions, as the knowledge used is not easily interpretable by human beings.
+1 Basic concepts
+Neural networks have architectures based on building blocks (artificial neurons or network nodes) similar to each other and that perform the processing in parallel. In today's class we will first discuss these processing units and then networks and their different topologies. Finally, some learning strategies will be presented.
+
+A neural network is made up of a set of simple processing units that communicate by sending signals to each other through weighted connections.
+
+The elementary component of this model are the processing units, also called nodes, neurons or cells. This processing unit is a mathematical model inspired by the biological model of a neuron. The human brain, which has billions of neurons interconnected in networks. In these networks, all the information that the brain is capable of handling is processed. The ability to think, memorize and solve problems has led many scientists to try to model their operation. Several researchers have, over time, sought to create computational models that represent the brain's functionality.
+
+A neuron is the nerve cell found in the brain of organisms. Its functioning is summarized in the figure.
+Stimuli enter neurons through synapses, which connect the dendrites (input branches) of one neuron with axons (output branches) of other neurons in the nervous system.
+
+Synapses regulate the amounts of information that pass from the dendrites to the neuron. The signals are then passed to the adder (cell body), which adds them and applies them to a threshold sensor, which determines the minimum input energy level above which the neuron fires an electrical charge.
+
+If the sum of the signals is greater than the threshold level, the neuron sends energy through the axon, from where the energy is transmitted to connecting synapses with other neurons. If the sum is less than the threshold, the stimulus is not passed on.
+
+Synapses play a fundamental role in memorization, as it is in them that information is stored. One can imagine that at each synapse, the amount of neurotransmitters that can be released for the same axon pulse frequency represents the information stored by the synapse.
+
+On average, each neuron forms between one thousand and ten thousand synapses. The human brain has about 16 billion neurons, and the number of synapses is over 100 trillion, enabling the formation of a very complex network.
+2 The artificial neuron model
+Aiming to simulate the behavior of this biological neuron, McCullock and Pitts (1943) proposed the figure model. In this model, each positive or negative sign that enters the system is multiplied by a number, or weight, which indicates its influence on the output. If the weighted sum of the signals exceeds a certain threshold, a response is generated at the output.
+Where:
+
+x , x , ..., x are the input signals;
+
+w , w , ..., w are the weights applied to the input signals;
+
+Σ is the summation function, having as output “a” (net input);
+
+f(a) is the transfer function (Activation function), which in the case of the McCullock-Pitts neuron is a threshold function; and,
+
+y is the output.
+
+3 Threshold activation function
+The first network with artificial neurons used a Threshold Activation function (Rosenblatt, 1958). The neuron model used by Rosenblatt was the same proposed by McCulloch and Pitts (1943).
+
+In this model, the units are called binary, that is, the Activation function produces outputs 0 or 1. The output will be equal to 1 if the value of the net input (a) is equal to or greater than a certain value called threshold (which in the most times it is zero), otherwise the output of the unit is set to zero.
+In some models of neurons with threshold function the output values ​​0 and 1 are replaced by the values ​​-1 and 1.
+
+Other neuron models implement distinct activation functions. The role of the activation function is to determine the form and intensity of change in the values ​​transmitted from one neuron to another. It is necessary to quantify the influence of each input on the activation of the unit. For this we define the activation function fi which, given a total input ai(t) and the current activation, produces a new value for the activation of unit i.
+
+4 Training
+Training is the way the neural computational system learns about the information it will need in order to solve certain problems. Through this process, the system adapts, adjusting the weighted connections between the processing elements. Learning rules are schemes for updating the weight values ​​of the synapses of a neural network, in order to obtain a desired processing pattern from the network. The learning process can be done basically in two ways: supervised or unsupervised learning. In supervised learning, examples of inputs and their respective outputs (set of patterns) are used in training the neural network. Generally, this method is based on minimizing the error between the desired output value of the output layer units and the value computed by the network for them.
+
+Based on this difference, the net weights are adjusted for each pattern presentation, in order to minimize the error in the output for the pattern set. The process is repeated several times until the standards have incorporated knowledge about how the standards work.
+
+In unsupervised learning, only input examples are shown in neural network training. Units respond to "interesting" features of the inputs presented in the training process.This type of training is closely linked with the competitive connection topology.
+5 Networks with Threshold Activation Functions
+A simple one-layer network consists of one or more output neurons j connected to inputs i through weights Wij. In the simplest case, the network has a single neuron k, as indicated in the figure (The activation function j originally proposed by McCullock and Pitts is a threshold function).
+For this case, the neuron activation threshold (above which we say the neuron fires) is _— zero, but the model allows you to establish a non-zero activation threshold. A modification introduced in this neuron model was the creation of a polarizer parameter (bias) b per activation function, that is, a polarizer per neuron, whose function is to increase or decrease the net input u, in order to translate the activation function on the u axis.
+The polarizer can be treated as "another weight". For this, it is enough to consider that the net input u of the neuron is given by the original sum added of an independent term b that we can, for reasons of simplicity, call wO. So, now we will have:
+All we did was add a new input x0 = 1 associated with a weight w0 = b This simple neuron already has an application. It can be used, for example, to separate input patterns into distinct classes. If the net input is greater than the threshold, this input pattern belongs to class 1, otherwise it belongs to class O. We can use it to emulate the behavior of a logic gate.
+
+For example, we can model the behavior of a logical gate "OR", whose table is in the figure.
+For that, we could use a neural network with only one neuron with two inputs and one output, as shown in the figure.
+What the network actually does is just model a linear discriminant function that separates the classes of the problem. If we were to plot a Cartesian coordinate axis where E1 and E2 were the coordinates, we would have what is shown in the figure.
+The separation between the two classes is given by the equation:
+
+X1. W1+ x2. W2+ W0 = O
+
+This is the equation of a family of lines, that is, in addition to the dotted line in figure 8.9b, there are an infinity of other lines that also make the correct separation of the classes of the problem.
+
+So, as we have seen, the network of a neuron works for this case, but how were the weight values ​​found for this case? In other words, how to train the network to find these values? Next, we'll look at two training methods.
+6 Hebb's Training Rule
+Training algorithms basically calculate at each step a new value for the weights and polarizations of the nodes (which, as we have seen, can also be considered as weights). That is:
+
+wnew = wantigo + ∆w
+
+Hebb proposed a calculus rule for each w that is proportional to the associated input and a transfer function that is slightly different from the threshold function seen earlier. This function is known as the bipolar threshold function:
+
+y = Σ (u) = 1 (if u ≥ 0 ) or -1 (if u < 0 )
+
+The training algorithm is as follows:
+
+1 Start all weights and biases with zero
+
+2 For each pattern (input and desired output) do:
+
+2.1 For each connection do: (d is the desired output of the node)
+
+2.1.1 ∆wi = xi * d; (consider w0 = b, x0 = 1 and ∆w0 = ∆b)
+
+2.1.2 wi = wi + ∆w
+
+At the end of the training, it is expected that y = d (that is, the output obtained is equal to the desired one).
+
+Let's test this by applying the rule to a logical AND bipolar operation, given by the table in the table.
+Let's apply the algorithm and do the math, indicating them in the table in the figure (remembering to include the bias). The final result is expressed in the grid in the table.
+And we test the inputs, we see that the network is trained and correctly responds to the output.
+7 Perceptron training rule
+This rule was proposed by Rosemblatt (1959) and presents some changes in relation to Hebb's rule. The activation function can now have a threshold  other than zero. A learning factor η (0 < η < 1) was introduced, which regulates the speed of modification of the weights. The training algorithm has been modified so that no correction is made to the weights when the net correctly responds to the pattern. The complete algorithm is as follows:
+
+1 Randomly start weights and bias (= 0, for simplicity)
+
+2 repeat
+
+For each pattern (input and desired output) do
+
+if y d do
+
+For each connection make
+
+Δ wi = η * xi * d
+
+wi = wi + Δ wi
+
+until no changes have been made to the defaults.
+
+Let's look at an example, illustrated in the figure.
+In the figure, the points marked with x belong to one class and the points marked with a circle belong to another class. PERCEPTRON must be able to find the class separator function (solid line in figure). The table with the values ​​of inputs, outputs and weights and bias is given below.
+
+The weights were started with arbitrary values ​​other than zero and which correspond to the initial separating line (dotted line in the figure). The learning rate is 1 and the threshold 0.
+As there was a change in this cycle (epoch) the algorithm would still calculate all the patterns a second time and only then, as there would be no changes, the algorithm would stop. The separating line, corresponding to the new weight and bias parameters found, is the solid line in the figure above.
+
+In practice, it may happen that convergence for all standards is not possible, that is, the error does not reach zero. For that, you can modify the algorithm to stop when a desired percentage of correct answers has been reached (90%, for example). However, Rosemblat proved that the algorithm is convergent, that is, the error always decreases.
+
+what's next in class
+In the next class, you will study on the following subjects:
+
+The limitation of previously studied networks.
+The potential of multilayer networks.
+The training process of multi-layer direct networks.
+Parameterization of the training model of direct multilayer networks.
+CONCLUSION
+
+
+He understood the difference between Symbolist and Connectionist models.
+Understood the inspiration of connectionist models of neural networks.
+Examined the different topologies of neural networks.
+Understood how a simple neural network works.
