@@ -1,0 +1,117 @@
+CONSTRUCTION OF FUZZY SYSTEMS
+1 Fuzzy Inference
+Fuzzy inference is a logical relation that obeys the same truth table of the Modus Ponens Implication of traditional propositional logic (crisp logic). The difference is that in crisp logic, the rule is activated only if the premise is true and in fuzzy logic the rule is activated when the premise has a non-zero membership degree.
+
+The rule is a composition of Fuzzy relations where the first relation is a fuzzy set (possibly resulting from a Fuzzy operation) and the second relation is an implication one.
+
+Examples:
+
+IF Man is young THEN Man is a bad driver.
+
+
+
+To calculate the implication relationship, the most used form is that suggested by Mandani, although there are others, proposed by Zadeh, Takagi-Sugeno, Tsukamoto and others. Mandani propose to use the minimum or the product of the membership degrees.
+
+Using the minimum: µpàq(x, y) = min [µp(x), µq(y)]
+
+Using the product: µpàq (x, y) = µp(x) . µq(y)
+
+The resulting set of the implication takes the forms of the figure for the cases of inference by the minimum and by the product.
+2 Combining triggered rules
+If there is a set of rules and two or more are triggered, the set resulting from the application of the different rules can be calculated, using the maximum method or the method of sum of the Fuzzy sets of the consequent of each rule, among others less-used combination options. For example, using the minimum for the implication and the maximum for the composition of two rules of the type:
+
+If x is A And y is B then z is C
+
+Tip
+
+We have the resulting Fuzzy set illustrated in the figure.
+3 Defuzzification
+A Fuzzy system has scalar input(s) and must be able to produce a scalar output as well. After making the inferences with the rules and after having determined the resulting Fuzzy set (output Fuzzy set), a numerical (scalar) value for the output must be found. This process is called Output Set Deffuzification.
+
+3.1 Defuzzification Methods
+There are methods proposed by several authors. Two of the most used are:
+
+area center
+
+Calculates the center of gravity of the area of ​​the set and uses the value of this point (figure). One problem is that the center of the figure is difficult to calculate if the universe of speech is not discrete or if the fuzzy functions are complex.
+Average of highs
+
+It looks at the output Fuzzy set C and determines the output x values ​​for which m C (x) is maximum, that is, it takes the maximum values ​​from each set that contributed to form the output set C. It then calculates the average of these maximum values ​​weighted by the membership degrees of the respective sets and uses this average value as the desired output.
+
+
+The output value z is calculated as: z = (MC1 . µC1 + MC2 . µC2) / (µC1 + µC2).
+3.2 Application example
+Fuzzy systems are widely used in control applications. Some of these applications can be found in a tool that has a demo version called FuzzyTech. One such example is the control of a crane that moves in a linear dimension and must place a certain load on a platform. Fuzzy control involves calculating the power to be applied to the motor (positive or negative to move the crane in both directions), based on the angle information (in degrees) that the load makes with the vertical axis and distance (in yards) that it is from the platform. The figure illustrates the system you want to control.
+
+Tip
+
+This figure and the following figures were taken from the FuzzyTech application.
+The input variable angle is modeled by the linguistic values ​​pos-big, pos-small, zero, neg-small, and neg-big. His universe of speech is given in the figure.
+The input variable distance is modeled by the linguistic values ​​neg-close, zero, close, medium and far. His universe of speech is given in the figure.
+The power output variable is modeled by the linguistic values ​​neg-big, neg-me, zero, post-me and post-hig. His universe of speech is given in the figure.
+The power output variable is modeled by the linguistic values ​​neg-big, neg-me, zero, post-me and post-hig. His universe of speech is given in the figure.
+The rules of the control system that calculate power work with the linguistic values ​​of the model variables and are of the following type:
+
+If DISTANCE = far and ANGLE = neg_small
+
+So POWER = pos_high
+
+If DISTANCE = medium and ANGLE = neg_small
+
+So POWER = pos_high
+
+If DISTANCE = medium and ANGLE = neg_big
+
+So POWER = pos_medium
+
+Thus, if at a given time, we have specific values ​​for the input variables, such as distance = 13 yards and angle = -45 degrees, different rules can be triggered at the same time.
+
+
+For that distance value (13 yards), two sets have µ > 0 (note that the vertical line starting from value 13 cuts two membership function curves). That is, distance=medium with µ =0.76 and distance=far with µ =0.24. Look at the figure.
+Likewise, for the angle (-45 degrees), two sets have m>0 (note that the vertical line starting from the value -45 also cuts two membership function curves). In this case, angle=neg_small with m=0.30 and angle=neg_big with m=0.70. Look at the figure.
+So for the first rule,
+
+If DISTANCE = far and ANGLE = neg_small
+
+So POWER = pos_high
+
+We have, in the premise, µ=0.24 and µ=0.30. To combine these values ​​with the logical operator E there are, as we have seen, several methods. One of the most common is to take the minimum of the two values. Thus, the value of the logical combination will be MIN (0.24; 0.30) = 0.24 and this will be the degree of relevance of the rule's premise. Also using the minimum operator for the inference, the conclusion of the rule will be triggered with a membership degree of, at most, µ=0.24.
+
+Entering the value µ=0.24 in the graph of functions of the power output variable, for the set determined by the rule (pos_high), we have the result of the figure.
+Likewise, for the second rule,
+
+If DISTANCE = medium and ANGLE = neg_small
+
+So POWER = pos_high
+
+we have a premise with MIN(0.76; 0.30) = 0.30. Therefore, the output variable graph will have the shape of the figure.
+Finally, for the third rule,
+
+If DISTANCE = medium and ANGLE = neg_big
+
+So POWER = pos_medium
+
+we have the degree of relevance of the premise as MIN(0.76; 0.70) = 0.70. So the graph of the output variable will have the shape of the figure.
+As a result of applying the three rules, we have the shape of the figure:
+As the three rules were activated, we have the union of the three sets. To represent the union, the maximum of the sets (Mandani) is generally used, which, therefore, results in the shape of the figure.
+Finally, in order to find an output value for the power (defuzzification) we can use several methods. Finding the center of mass of the resulting figure is one of them (difficult to calculate). Another method, called Average of Maximums, calculates the average of the typical values ​​of the activated functions (maximum values) weighted by the degrees of relevance with which these sets were activated. So, for the case we have what is indicated in the figure.
+The value of the power output variable, for this instant, given the values ​​of the input variables (12 yards and –45 degrees) and the rules mentioned, would therefore be (note that the maximum values ​​of each set, used in calculating the average of the maximums, are indicated by the arrows in the previous figure):
+
+Average = (10 x 0.7 + 23.5 x 0.3) / (0.7 + 0.3) = 14.05
+
+That is, for a distance of 12 yards and an angle of -45 degrees, the Fuzzy control outputs a power of 14.05 KW to be applied to the crane's motor. This value would be applied to the plan and would generate a change in the distance and angle of the load, which would feed back the fuzzy control in the next iteration.
+
+what's next in class
+In the next class, you will study the following subjects:
+
+The concept of optimization and optimization problems.
+The genetic inspiration of a computational optimization model.
+The functioning of the evolution cycles of a genetic algorithm.
+The functioning of genetic operators.
+The model of genetic algorithms in solving optimization problems.
+CONCLUSION
+
+
+Understood how inference works in Fuzzy rule systems.
+Learned to combine results from different Fuzzy rules.
+Understood the ways to defuzzify fuzzy values ​​to obtain scalar output values.
