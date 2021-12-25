@@ -1,0 +1,105 @@
+9 
+INTRODUCTION TO ARTIFICIAL INTELLIGENCE
+
+SUPERVISED NEURAL NETWORKS
+1. know the limitations of the studied networks and the potential of networks with multiple layers;
+
+2. know the potential of networks with multiple layers;
+
+3. know the training process of direct multi-layer networks;
+
+4. parameterize the training model of direct multilayer networks;
+
+5. apply a multilayer network to a classification problem.
+
+1. Limitation of monolayer networks
+So far we've seen networks with a single layer (in addition to the input layer). Now let's look at the limitations of this type of networks. In fact, these networks do not solve, that is, they are not able to separate classes, from a multitude of real problems.
+
+Let's take as an example the case of the Exclusive OR (XOR) logical operation, whose truth table (bipolar) is shown in the following figure.
+If we use a network with a single layer and a single neuron, with two inputs and one output, we would have as the net input of the neuron the value:
+With a zero-threshold activation function, the cases of net input values ​​u that correspond to zero output are at the boundary of separating the classes, corresponding to:
+With a zero-threshold activation function, the cases of net input values ​​u that correspond to zero output are at the boundary of separating the classes, corresponding to:
+
+
+However, tracing an axis of coordinates x1 and x2, it is clear that there are no values ​​of w that can be used in the equation to define a straight line that properly separates the output values ​​of the XOR function into two distinct classes, since there is not no lines that separate these values, as shown in the figure, as opposed to separation lines for the AND and OR functions, which can be found, as shown in the same figure.
+2. Possibilities of Multilayer Perceptrons
+How to solve the problem?
+This limitation can be overcome by adding one more layer of nodes, thus forming a network known as the Multilayer Perceptron (MLP). For the specific example mentioned (XOR), just add another layer, consisting of a single node (thus located at the exit of the existing one), so that the problem can be solved, that is, so that the network becomes capable of separate input values ​​into two distinct output classes. The network architecture is represented in figure a (the values ​​inside the nodes are the thresholds) and the separation function that this architecture generates is shown in figure b.
+In fact, what the network now found was a separating surface (separating plane) that separated the results of the combination of possible inputs, which now lie in a three-dimensional plane, since the inputs of the second node are now three.
+
+On a more general plane, for any N-dimensional input it is possible to find an N-1 dimensional separating surface for the problem classes using a multilayer network. However, finding the necessary weights and polarization values, or even the exact architecture required, is another problem.
+The difficulty is that we do not know the desired value in the output of the node(s) from the hidden layer and therefore we cannot use the PERCEPTRON update rule to update the weights that link the layer of entry to the hidden layer. We will address this issue later in the next item.
+3. Training of Multilayer Perceptrons
+Despite the interesting observations of Minsky and Papert in 1969 regarding the applicability of networks, the authors did not suggest any method capable of finding the parameters of a network with more than one layer. Such an algorithm only emerged from the independent researches of Paul Werbos (1974) and Rumelhart, Williams and Hinton (1986). What these authors proposed was a method of propagating the error from the output layer (which we know) to the hidden layer(s). In this way, it became again possible to change the parameters of all layers of the network, based on the error in the output, that is, looking, as in single-layer networks, which is the change in parameters that minimizes the error at the output of the network.
+
+The training algorithm became known as Backpropagation and basically consists of:
+1. Present a pattern (input + desired output) to the network.
+2. Calculate the network output error (obtained output – desired output).
+3. Back-propagate the error in the network by calculating how changes in weights affect the error.
+4. Modify the weights in order to minimize the average error (considering all standards).
+5. Return to step 1 while there are patterns that were not presented in this iteration.
+6. If a desired maximum error has not been reached, return to step 1 for the next iteration (show all patterns again).
+In order to minimize the average error for all the standards presented, modifications are made to the weights for each standard. The training algorithm treats neurons from the output layer and those from the hidden layers in a different way, based on the generic network seen in the following figure.
+As we saw in the previous lesson, in a k neuron in the output layer, the error is given by:
+The sum of squared errors in the output layer can also be written as:
+Also, as in the simple Perceptron model, the net input uk of a layer k node is given by:
+However, for this type of network no threshold activation function is used, for reasons that will become clear later.
+The idea of ​​minimizing the error is the same as in the simple Perceptron, that is, you want to find the adjustment of the weights that minimizes the error in the output, in such a way that the adjustment of each weight is inversely proportional to the direction of growth of the function. with the change in weight, that is:
+At the end, the following adjustment rule is obtained for the weights that connect layer j to layer k:
+The authors of the Backpropagation algorithm also showed that these accounts are extensible to N layers.
+
+In other words, detailing the algorithm a little better with regard to what should be done each in the presented pattern, we could enumerate the following steps:
+1. Display an input pattern.
+2. Propagate the signal forward, calculating outputs.
+3. Calculate the δ’s for the output layer neurons.
+4. Backpropagate the output error by calculating the ‘s of hidden layers.
+5. Update the weights and, with a new standard, return to step 1.
+Some relevant aspects about the activation function to be used, given the characteristics of the algorithm:
+The activation role needs to be differentiable across the domain.
+the activation function needs to be non-decreasing so that its derivative does not change sign compromising the algorithm convergence
+For these reasons and also because of the ease of obtaining the derivative (which can be expressed in terms of the function itself), it is common that semilinear activation functions are used, such as the Sigmoid function or the Hyperbolic Tangent (whose only difference is that it varies between -1 and 1).
+
+4. Determining the size of the network
+One of the main problems when using supervised training is the generalizability, that is, the ability of the network to respond adequately to patterns that were not part of the training set.
+
+As seen, the weights of the connections are modified during training in order to minimize the error for the presented standards. If the number of patterns presented is sufficiently representative of the function, the tendency during training with the Backpropagation algorithm is that the error, both in the set of training patterns and in the set of validation patterns, decreases as the network goes. generalizing the learning process, as can be seen in the following figure.
+
+
+
+Figure 6 - Training time
+However, after a certain time the validation set error reaches a minimum and starts to grow, while the training set error continues to fall, indicating a tendency of the network to incorporate information that is specific to the training set, such as , for example, the measurement errors of that set.
+One solution is to stop training when the validation set error trend starts to diverge from the training set trend. Thus, the training set is used to modify the weights while the validation set is used to estimate the generalizability.
+
+However, this may not be possible if the set of available data is small, as splitting into two sets can aggravate the lack of representativeness of the pattern set.
+
+Another approach to avoid overtraining is to limit the network's ability to absorb spurious correlations between input data. This basically happens when the network has more degrees of freedom (which are proportional to the number of links) than the number of training patterns. Thus, the generalization problem is directly linked to the network dimensioning problem. That is, basically the idea is to get the smallest network that can accommodate the information contained in the training dataset. The problem is precisely to estimate what is this minimum size that allows the network to still learn without incorporating the spurious data from the training set.
+Studies to estimate this size relate the complexity of the system with the number of training examples needed to learn a particular function. If the number of training examples is small in relation to the size of the network, the generalization error is high.
+
+The simplest approach, though quite inefficient, is to simply run multiple networks of varying sizes and see what is the minimum network that can learn the input patterns. Even if it is possible to determine the smallest net by this process, it is still very susceptible to the training parameters, so it can be very difficult to determine if the net is too small to learn patterns, if it simply learns slowly or because of poorly chosen initiation values ​​or training parameters it has dropped to some local minimum.
+
+The approach chosen by several authors is based on the common principle of starting training with a net larger than necessary and pruning (removing) parts of the net that are not necessary. As the net is initially large, it has enough degrees of freedom to accommodate quickly the general characteristics of the input data in a way insensitive to initial conditions and local minima. After initial accommodation then the net can be pruned to eliminate specific characteristics of the training set, thus favoring the desirable criteria of generality.
+5. Elimination of connections
+A basic idea to simplify the network is to cut the connections between nodes. For that, a first approach can be to simply zero the weight of a connection and verify what influence this has on the error. If the error increases too much, then the cut weight is restored, if there is no significant change, the weight is permanently removed and a certain time is allowed for the other connections to absorb the characteristics of the inputs that were represented in the cut weight. If the network has an X quantity of weights, the time for each propagation is of the order of O(X). As the operation must be performed for each weight and for each of the Y input patterns, then each pruning step is of the order of O(Y.X2), not counting the settling time.
+If you want to adopt a more cautious procedure that analyzes the influence on the error of each weight for each standard and remove only the weight of lesser influence, repeating the procedure until the smallest error change reaches a stop threshold, then the time is of the order of O(YX3). Naturally, these are very slow procedures, especially for larger networks. Thus, the pruning algorithms that we will see below take other approaches.
+
+6. Sensitivity calculation methods
+There are some methods that try to estimate the sensitivity of the error function when removing a link and then removing the links with less influence. These methods usually work after training the network. That is, first the net is trained to a larger size than necessary, then the sensitivity of each weight is estimated and then those with less sensitivity are removed.
+
+The problem with these methods is that they do not take into account the correlation between net weights. The sensitivity of each wij weight is calculated as if it were the only candidate to be removed or as if the node were the only
+
+candidate to be pruned. When one of the weights is removed, the other calculated sensitivities do not necessarily remain valid for the new network configuration.
+This can be easily understood if we think of an example with two nodes that cancel each other out in contributing to the output. Viewed as a pair they have no contribution to the output, but viewed individually each has a strong contribution and therefore is unlikely to be cut. The same happens with nodes that are partially correlated and they are quite common in most networks.
+
+7. Methods with penalty terms
+The central idea of ​​the Backpropagation algorithm is to minimize a cost function, in this case, the network output error. As the hypothesis of the pruning algorithms is that the smallest network, which is able to respond to the training patterns, is the one that will present the best generalization, the idea of ​​dividing the cost function into a sum of two terms, one representing the cost due to the error and the other represented the cost due to the complexity of the network. This additional term is called the penalty term, as it represents a penalty that the cost function suffers due to the complexity of the network. The methods that introduce this term seek to minimize the new cost function that includes a complexity cost term, such as the example below:
+
+Onde o primeiro termo é o erro quadrático como descrito anteriormente e o segundo termo é um somatório quadrático de todos os pesos da camada multiplicado por um coeficiente arbitrário que regula a importância desse termo. Desta forma, minimizar o novo custo implica agora em minimizar o tamanho da rede, além de minimizar o erro. Assim, a tendência é que haja uma redução na complexidade da rede, forçada pela tendência de que pesos sejam levados para zero para atender a minimização do custo de complexidade. Ora, ocorre que se os pesos fossem todos zerados, o erro (primeiro termo) iria aumentar muito, de forma que a introdução do segundo termo produz objetivos antagônicos, que competem ao longo do treinamento, produzindo, ao final, uma rede com o menor tamanho, mas ainda suficiente para manter a eficiência representada por um erro também pequeno.
+
+CONCLUSÃO
+Nesta aula, você:
+
+conheceu a limitação das redes estudadas e a potencialidade das redes com múltiplas camadas;
+compreendeu a potencialidade das redes com múltiplas camadas;
+aplicou o processo de treinamento das redes diretas de múltiplas camadas;
+parametrizou o modelo de treinamento das redes diretas de múltiplas camadas;
+aplicou uma rede de múltiplas camadas em um problema de classificação.
