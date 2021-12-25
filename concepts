@@ -1,0 +1,171 @@
+Artificial Intelligence 
+
+
+1. Critically compare the different definitions made by authors in the field;
+
+2.Understand the main objectives and obstacles linked to research in the area;
+
+3.Understand the taxonomy of the techniques that will be studied in the discipline;
+
+4. Recognize the different paradigms and their basic applications.
+
+1 What is artificial intelligence?
+Although there is no consensus on what exactly Artificial Intelligence is, different authors have sought to define the term over time. Below we list some of these definitions:
+"The automation of activities that we associate with human thinking, activities such as decision making, problem solving, learning…" (Bellman, 1978)
+"The study of computations that make it possible to perceive, reason and act" (Winston, 1992)
+"The art of creating machines that perform functions that require intelligence when performed by people" (Kurzweil, 1990)
+"The Study of How to Make Computers Do Things People Are Best Right Now" (Rich and Knight, 1991)
+"The field of studies that seeks to emulate intelligent behavior in terms of computational processes" (Schalkoff, 1990)
+"The branch of computer science that is interested in automating intelligent behavior" (Luger and Stubblefield, 1993)
+"The field of studies that N41; seeks to develop computational techniques to perform tasks that require intelligence when performed by human beings. It involves the development of technology that allows us to deal with categories such as reasoning, learning and perception." (Takimoto, 1987).
+What is intelligence?
+In fact, many of the definitions cite intelligence as something you want to simulate, emulate or mimic. Therefore, a previous discussion that is necessary is: "What is intelligence?".
+
+Some possibilities are:
+
+Play chess?
+Understand human language?
+Decide in the face of uncertainty?
+Solve complex combinatorial problems?
+Recognize an object by the image?
+Predict an event?
+Speak? Sing? To compose?
+Generally speaking, the term "intelligence" is coated with a natural glamor that refers to things, original, innovative or difficult to achieve by the average human being.
+
+It's probably easier for someone who has a metal ability to perform complex arithmetic calculations to be considered intelligent, than to assume intelligent someone who can perform everyday, mundane tasks like talking, recognizing a person's face, laughing at something funny, or deciding when to crossing a street with heavy traffic.
+
+However, while the calculus of arithmetic expressions, however complex they are, is easily modeled with traditional computational techniques, the "inherent" behaviors of the human being are often quite difficult to model with traditional systems construction techniques.
+
+In fact, what seems to be a common denominator is that intelligence is related to knowledge, be it extensive or specialized.
+3 Some basic questions
+The basic and recurrent problems that researchers in the field are focusing on revolve around some basic issues, such as:
+
+How to represent knowledge?
+In what ways can it be expressed?
+How to build a sufficient knowledge base to understand the problem domain?
+How to make inferences automatically from certain knowledge?
+How to proceed in the presence of incomplete, incorrect, imprecise or conflicting knowledge?
+How to add knowledge over time?
+
+3.1 Some paradigms
+When approaching such questions, the various paradigms currently researched are more or less successful, according to their characteristics, virtues and limitations. A light approach to these paradigms, which will be further studied throughout the course, is made below.
+
+knowledge-based systems
+
+(Table searches, decision trees, heuristic search, rule-based systems).
+
+They deal with explicit knowledge and symbolically represented.
+Examine your reasoning.
+They can justify conclusions.
+They act even with incomplete or imprecise knowledge.
+Main applications: games, product configuration, issuing proposals, telemarketing, distribution, granting credit, portfolio management, customer orientation, selection, budgeting, strategic planning, resource allocation, diagnosis, therapeutics, tutorial systems, psycho-tests .
+Connectionist Models
+
+(Neural networks)
+
+They deal with non-symbolically represented knowledge.
+Slightly inspired by brain behavior.
+They process information in a parallel and distributed way.
+They learn with training.
+They generalize learned knowledge.
+As they do not deal with symbolic knowledge, they do not justify decisions.
+Some applications: speech recognition, sensor signal classification, image recognition, financial market index prediction, time series forecasting, voice recognition, general classification, grouping and forecasting applications.
+nebulous systems
+
+(Fuzzy Logic)
+
+They model the imprecise modes of approximate reasoning that influence the human ability to make decisions.
+They perform approximate reasoning, with imprecise propositions, described in natural language, using fuzzy set theory as a tool to convert them into a numerical format.
+Some applications: aircraft control, subway operation, automatic vehicle transmission, elevator control, stock market analysis, TV image adjustment, video camera autofocus, camcorder image stabilizer, washing machine control, and air conditioning systems.
+evolutionary computing
+
+(Genetic Algorithms)
+
+They are global optimization algorithms that are based on the mechanisms of natural selection and genetics.
+They employ a parallel and structured search strategy that is geared towards reinforcing the search for "high fitness" spots.
+They explore historical information to find new search points, where better performances are expected, through iterative processes, where each iteration is called a generation.
+Some applications: general routing problems, control of dynamical systems, induction and optimization of rule bases, finding connectionist topologies, simulation of biological models, interactive evolution of images.
+In short, knowledge is the basis for developing models that involve intelligence. As all the mentioned paradigms will be approached throughout the discipline, the approach of each technique will not be extensive or deep, so that all of them can be approached and we can have different inspirations and applications.
+
+
+The first technique we will study applies to a class of problems that will be defined later on and that is generically called Production Systems.
+4 Characterization of Production Systems
+Production Systems are special purpose computational systems based on restricted and specifiable knowledge. The type of problem that can be addressed with this technique must have three characteristics. The first one is that it must be possible to represent and recognize the static situations of the problem, which can be called “states”. In other words, they are problems characterized by evolving in a sequence of distinct and identifiable states. For example, problems involving board games generally have these characteristics. In a game of chess, checkers or backgammon, the situation on the board after each move of one of the opponents characterizes a “state” of the game.
+
+The game itself is a succession of distinct, recognizable and identifiable states. In addition to states, this type of problem is also characterized by having known “operations” that cause state changes. In board games, for example, operations are the possible movements of the pieces, imposed by the rules of the game. The third condition that must be present is that there is an initial state and one or more final states to be reached. In board games, the initial situation is the position of the pieces before the start of the game and the final situation is a state that characterizes the end of the game, either with the victory of one of the opponents, or with a draw.
+
+In a game of chess this can be characterized either by a “checkmate” (victory) or by a “drowning of the king” (draw). There are, of course, many “checkmate” settings, but the important thing is that this state can be characterized and recognised. In addition to board games many other problems have these characteristics. An important class of them, which constitute one of the main practical applications for the techniques we will study next, are general routing problems.
+5 Modeling of states and operations
+Production Systems are characterized as having a base of states, a set of operators and a control strategy. The base of states is the set of configurations that the problem can assume. Operators perform state-based transformations, that is, they take the problem from one state to another. Solving the problem is, in fact, determining the sequence of operators that must be applied from the initial state, in order to reach the final states. If we can choose between several operators in a given situation, then we need a control strategy.
+
+The system basically computes:
+
+state ← initial state
+
+Until an end condition is met:
+
+Select an operator R
+
+New state ← R (current state)
+
+The end condition is reached if a final state has been reached, if there are no more operators applicable to the current state, or if there are no more computational resources.
+
+5.1 Representation
+It is possible to represent a Production System through State Graphs. Graphs are made up of sets of vertices and edges. It is possible to graphically represent this concept. For example, a graph G with vertices V = {a, b, c} and edges A = ((a, b), (a, c)}, can be graphed as in the figure.
+
+If the graph has arrows indicating the transition between the vertices, like the graph in the figure, it is a directed graph. If it only has straight lines, it is an undirected graph.
+
+
+
+In a state graph, each vertex represents a state and each edge the application of an operator that causes the state to change.
+
+Let's present an example that can be represented as a state graph and is known as the water jar problem:
+
+Consider two opaque jars in which you cannot see the contents. Jug A holds 4 liters and jug B holds 3 liters. We want to put exactly two liters of water in jug A. For that, we have the following operations available: completely fill one of the jugs; completely empty one of the jars; and, passing the contents from one jar to the other.
+
+First, it is necessary to find a representation for the problem, as this is the only way to characterize and recognize the problem states. Each problem can have a different representation. The state of a chess game, for example, can be a picture of the board or a textual description of the pieces' positions. We should choose the simplest representation possible. For this problem, what characterizes each state is the amount of water in each jar. Therefore, you can create a representation that is a pair of numbers, where the first number represents the amount of liters of water in jar A and the second the amount in jar B. So, for example, (2, 3) indicates that there are 2 liters in jug A and 3 liters in jug B.
+The operations possible to perform with the jars constitute the edges of the graph and, for this case, they can be listed and named as follows:
+
+R1 - fill jar A
+
+R2 - fill jar B
+
+R3 - empty the jar A
+
+R4 - empty jar B
+
+R5 – pass the water from jug A to jug B
+
+R6 – pass the water from jug B to jug A
+
+Initially the jars are empty, so the initial state is (0, 0). Our aim is to put 2 liters in jar A, so we are interested in reaching a state (2, x), where x is any value. A graph, with some of the possible transitions, would have the shape of the figure.
+A graph with some states and transitions of the bottle problem
+
+
+
+(0,0) R1 (0,3) R6 (3,0) r2 (3,3)
+r1 (4,0) r5(1,3)
+r1 (4,0) r3(0,0)
+
+WARNING
+
+In a state graph there can be cycles such that successive operations cause a return to a previous state. This situation is undesirable, as indicated at the bottom of figure 1.2, in which the successive application of operators R1 and R3 caused the return to the initial state.
+
+6 Defining a Search Strategy or Method
+The objective in a Production System is to obtain a sequence of operators that take a problem from its initial state to its final state. The systematic way of traversing the graph looking for this sequence is called Search Method or Strategy. A Search Method builds a Search Tree, in which the root is the initial state and the child nodes are obtained by successively applying the operators.
+
+Each state must only appear once in the tree, so if the application of an operator on a certain state leads to another state that is already in the tree, then this new state must be discarded (it must not be included in the tree). This is to say that this operator is not applicable to this state in this specific branch of the tree.
+
+what's next in class
+In the next class, you will study on the following subjects:
+
+Meaning of graph search strategies;
+Strategies for depth and breadth searches;
+Ordered search and A* search strategies for costed graphs.
+CONCLUSION
+In this class, you:
+
+Understood the main objectives and obstacles linked to research in the area;
+Understood the taxonomy of the techniques that will be studied in the discipline;
+He recognized the different paradigms and their basic applications.
+
