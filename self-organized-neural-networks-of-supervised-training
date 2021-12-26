@@ -1,0 +1,162 @@
+10 
+SELF-ORGANIZED NEURAL NETWORKS OF UNSUPERVISED TRAINING
+Understand the difference between supervised and unsupervised training.
+
+2. Know the applications of unsupervised networks.
+
+3. Execute the competitive networks training process.
+
+4. Apply a competitive network to a clustering problem.
+
+1 competitive learning
+Competitive learning is an algorithm that divides a series of input data into groups (clusters) that are inherent to the input data. Information is extracted without there being a target input/output pair.
+
+The networks for this type of problem have a layer of output nodes that are connected to a single layer (input, therefore), in such a way that there are as many nodes at the input as there are characteristics of the input patterns that we have and as many nodes output how many clusters we want to sort the inputs.
+
+The training of this type of network promotes a competition between the nodes, so that only one of the output nodes is activated for each input pattern presented. This node is precisely the node representing the cluster to which that input pattern belongs. For example, we can have an architecture like the one shown in the following figure.
+For each input pattern (vector) presented in layer i (input layer) that is presented to the network, only one of the nodes in the output layer (layer j), called the winning node, will be activated. In an already trained network, all input x vectors that belong to the same cluster, that is, that have similar characteristics in such a way that they can be identified as belonging to the same cluster, will trigger the same output node (representative of the cluster , therefore).
+
+The basic idea is that, during training, for each pattern presented, the algorithm finds which of the output nodes best represents that input pattern (through some kind of distance between the input vectors and the output nodes) and adjusts the weights that connect the input to this output node. This makes the chosen node even more representative of this pattern, that is, it reduces the "distance" that separates this pattern from the output node. During training, the output node becomes the typical representative of the input patterns that made it the winner, that is, that node starts to represent the cluster of that group of input patterns.
+
+To determine the distance that exists between the input vector (input pattern) and each of the output nodes some methods can be used.
+
+2 Kohonen Networks
+Kohonen networks, also known as Kohonen Self-Organizing Maps, were proposed by Teuto Kohonen in 1984 and are an unsupervised learning procedure. The architecture is made up of a single layer of nodes, usually (but not necessarily) two-dimensional. linked to the input node vector (figure below). The new concept introduced is that the behavior of a given node is directly affected by the behavior of neighboring nodes (local neighborhood).
+Each neuron is connected to each of the inputs through a weight, so that the weight vector of each node has the same dimension as the input vector. Kohonen's proposal is that during training the altered weights are not only those of the winning neuron, but also the weights of neurons in the vicinity of the winning neuron. Patterns that are close in the original space (have similar characteristics) will trigger the same neuron or will trigger nearby neurons in the mesh of the network. Thus, it is necessary to define which ways to measure distance in the mesh, that is, define which is the neighborhood in which the nodes will be affected during training.
+
+Several ways to calculate the distance can be used. Two of the most common forms are the Manhattan distance (city distance) and the Grid distance.
+
+Let's consider 2 neurons in a two-dimensional mesh N1 and N2, with coordinates (i,j) and (k,h). In this case we have: DistManhatan(N1,N2) = abs(h-j) + abs(k-i). The Grid distance will be given by:
+
+DistGrid(N1,N2) = Max{ (h-j) , (k-i)}
+
+For the case of the network of thirty-six nodes with the connection topology of the figure below, the nodes that would compose a radius 1 neighborhood or a radius 2 neighborhood of a winning node (undicated in bold) are indicated in figures a and b, respectively. for the Manhattan distance and for the Grid distance.
+The algorithm proposed by Kohonen can be summarized as follows:
+
+1) Randomly choose the q vectors of initial weights.
+
+2) Present the input pattern x(k) (k = O in the first iteration).
+
+3) Calculate the distance of x(k) to each of the q weight vectors wj(k), j=1. . .q, and name as the winning neuron the one for which (wj(k) - x(k))2 or I Iwj(k) - x(k) | | is minimized.
+
+4) Choose a Vi(n) neighborhood for the winning neuron i according to one of the metrics presented and considering a given radius.
+
+5) Update the weights of all neurons of Vi(n): with: w = w + n (x -w) where is the learning rate, generally decreasing over the course of training (the radius of the Vi(n) neighborhood may also decrease during training).
+
+6) Return to step 2 until convergence.
+
+The Kohonen net input is a set of pattern vectors. For example, we could have 10,000 patterns of bank customers, each formed by a vector of size 5, containing, for each customer, information on: age; average balance; account time; profession; and, income. If we choose a two-dimensional 4X4 mesh, we will have 16 neurons in the mesh, each one connected to the input vector through a vector of size 5 weights. At the end of the training phase, we will be able to assign each of the 10,000 patterns to one of the 16 neurons in the mesh. After training this network, if we counted the number of input patterns (that is, distinct clients) that chose each node as the winner, we could have a distribution of 10000 clients across the nodes as shown in the following figure.
+What happened was a "mapping" of patterns that are similar in their five characteristics (thus vectors of 5 dimensional space where it is difficult to see proximity) to the same node or to nearby nodes in the two-dimensional mesh dimension (where it is easy to observe the proximity).
+
+For this reason, this type of network is also known as "Kohonen's Map", as it promotes the mapping of the proximity that patterns have in n-dimensional space to a proximity in two-dimensional space, where it is easy to observe this proximity. For the example above, the top right nodes that bind 2500 and 300 patterns together probably represent patterns that are very similar to each other. The 2100 patterns that are clustered at the bottom left node are likely to be quite different from the 1500 patterns clustered at the top left corner of the map. In short, proximity of patterns in n-dimensional space causes proximity of those same patterns in nodes of two-dimensional space.
+
+3 Examples with Kohonen nets
+Let's go to an example of training with a Kohonen net designed to agglutinate 4 vectors, with four characteristics each, in two different clusters. The vectors are:
+
+a -(1,1,0,0) b=(0,0,0,1) c=(1,0,0,0) d=(0,0,1,1)
+
+The learning rate will start at 0.6 and will be cut in half each iteration, ie N., = nt / 2. Training will end when the training rate drops below 0.01 or the mean error for the four vectors also fall below 0.01 (these criteria are arbitrary). As we want to classify into two clusters, we are going to use, for the purpose of simplifying the accounts, a very simple architecture with only two nodes (1 and 2) and a zero radius neighborhood, that is, only the winning node will have its weights changed for each presented pattern (figure below).
+3.1 Another example of a Kohonen network
+Assume a simple network to classify vehicles. As the example is simple, let's consider the neighborhood being the neuron itself, two iterations and make n = 0.8 (fixed).
+
+As characteristics, the number of wheels and the existence or not of an engine will be used. The value 1 indicates the existence of a motor while 0 indicates the absence. Let's look at the entry patterns for the two vehicles we'll use in training:
+As there are two features, the input layer of the network will consist of two neurons.
+
+In the output layer, four neurons will be used.
+
+Randomly the weights are initialized to:
+
+neuron 1 = {w11, w21} = {1, 2}
+
+neuron 2 = {w12, w22} = {2, 2}
+
+neuron 3 = {w13, w23} = {1, 3}
+
+neuron 4 = {w14, w24} = {3, 2}
+
+FIRST ITERATION
+
+Introducing the characteristics of the bike (2.0) and calculating the distances:
+
+d1 = (2-1)2 + (0-2)2 = 5
+
+d2 = (2.2)2 + (0-2)2 = 4
+
+d3 = (2.1)2 + (0-3)2 = 10
+
+d4 = (2-3)2 + (0-2)2 = 5
+
+The winning neuron is the second (d2). Adjusting your weight:
+
+w12 = w12 + 0.8(x1(t) - w12(t)) = 2 + 0.8.(2-2) = 2
+
+w22 = w22 + 0.8(x2(t) - w22(t)) = 2 + 0.8.(0-2) = 0.4
+
+Introducing the characteristics of the car [4.1) and calculating the distances:
+
+d1 = (4-1)2 + (1-2)2 = 10
+
+d2 = (4-2)2 + (1-0.4)2 = 4.36
+
+d3 = (4-1)2 + (1-3)2 = 13
+
+d4 = (4-3)2 + (1-2)2 = 2
+
+The winning neuron is the fourth (d4). Adjusting your weight:
+
+w14 = w14 + 0.8(x1(t) w14(t)) = 3 + 0.8.(4-3) = 3.8
+
+w24 = w24 + 0.8(x2(t) - w24(t)) = 2 + 0.8. (1-2) = 1.2
+
+SECOND ITERATION
+
+Shown the characteristics of the bike (2.0} and calculating the distances:
+
+d1 = (2-1)2 + (0-2)2 = 5
+
+d2 = (2-2)2 + (0-0.4)2 = 0.16
+
+d3 = (2-1)2 + (0-3)2 = 10
+
+d4 = (2-3.8)2 + (0-1.2)2 = 4.68
+
+Again the winning neuron is the second (d2). Adjusting your weight:
+
+w12 = w12 + 0.8(x1(t) - w12(t)) = 2 + 0.8. (2-2) = 2
+
+w22 = w22 + 0.8(x2(t) w22(t)) = 0.4 + 0.8.(0-0.4) = 0.08
+
+Introducing the characteristics of the car [4,1} and calculating the distances:
+
+d1 = (4-1)2 + (1-2)2 = 10
+
+d2 = (4-2)2 + (1-0.08)2 = 4.8464
+
+d3 = (4.1)2 + (1-3)2 = 13
+
+d4 = (4-3.8)2 + (1-1.2)2 = 0.08
+
+Again the winning neuron is the fourth (d4). Adjusting your weight:
+
+w14 = w14 + 0.8(x1(t) - w14(t)) = 3.8 + 0.8. (4-3.8) = 3.96
+
+w24 = w24 + 0.8(x2(t) - w24(t)) = 1.2 + 0.8.(1-1.2) = 1.04
+NEW ENTRY
+
+After the network is trained, it can help to classify elements that have not been part of the training set and for which you want to obtain a grouping. For example, for the case in question, it would be possible to present the characteristics of a motorcycle, which is a vehicle whose characteristics are to have two wheels and an engine, and observe which group the network decides the new entry belongs to. As the characteristics of the motorcycle are more similar to those of the bicycle, the network must classify the new entry as being from the bicycle cluster. This capacity of the model is called generalization. Checking the output of the network trained for the entry of the motorcycle:
+
+x = (2.1)
+
+d1 = (2-1)2 + (1-2)2 = 2
+
+d2 = (2-2)2 + (1-0.08)2 = 0.8464
+
+d3 = (2-1)2 + (1-3)2 = 5
+
+d4 = (2-3.8)2 + (1-1.2)2 = 3.8432
+
+As expected, the winning neuron was the second, indicating that the model of the motorcycle presented to the network is more suitable for the bicycle class.
+Understood the difference between supervised and unsupervised training.
+Know the applications of unsupervised networks.
+Studied the training process of competitive networks.
+Applied a competitive network to a clustering problem.
