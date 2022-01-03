@@ -97,3 +97,24 @@ Area Center
 Average of Maximums
 Average of Lows TRUE
 centroid
+
+
+Consider the set below, resulting from the composition of several rules activated by the composition method by MAXIMO:
+
+ 
+
+0.7
+0.3       AVERAGE 22     AVERAGE 32
+
+So, let's do it 
+0.7 * 22 + 0.3 * 32/ 0.7+0,3 = 25/1 = 25
+
+ 
+
+The final value of the variable calculated based on the AVERAGE MAXIMUM defuzzyfication method is:
+
+27
+23
+25 TRUE
+19
+21
