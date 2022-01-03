@@ -1,0 +1,13 @@
+A fuzzy system deals with fuzzy sets to do the tasks of fuzzyifying real-world scalar values ​​so that they can be manipulated as linguistic entities and, after applying inference rules that are expressed with these linguistic entities, but actually deal with the membership values ​​produce, through a process called defuzzyfication, the scalar values ​​that apply to the output to the real world.
+From this statement, the following characteristics of the components of a fuzzy system can be extracted:
+I- Rules are provided by experts or extracted from numerical data
+II- The defuzzifier transforms the fuzzy set obtained by Inference and transforms it into a precise value.
+III- In the inference, the typical value is weighed against its degree of relevance.
+
+Choose the correct alternative.
+
+Only item III is correct.
+Only items II and III are correct.
+Items I, II and III are correct.  TRUE
+Only item II is correct.
+Only items I and III are correct.
