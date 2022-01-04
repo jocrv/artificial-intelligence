@@ -1,0 +1,57 @@
+Important parameters in the design of an artificial neural network are considered:
+Tick ​​and INCORRECT alternative.
+Number of layers
+membership function TRUE 
+Number of neurons
+network topology
+Data representation
+
+In relation to artificial neural networks, it can be stated that
+
+I- Recurrent networks - networks with neurons that compete for the right to produce the output are called
+
+II- Competitive networks - have dynamic neurons
+
+III- Supervised learning networks - weight adjustment is made at each input/output pattern to produce the desired output
+
+Tick ​​the CORRECT alternative
+
+Only alternative I is correct.
+Only alternative III is correct.  TRUE 
+Only alternative II is correct.
+Only alternatives II and III are correct.
+Only alternatives I and III are correct.
+
+Neural networks have architectures based on building blocks similar to each other and that perform the processing in parallel. In relation to neural networks:
+
+I - In unsupervised learning, examples of inputs and their respective outputs are used in training the neural network.
+II - Learning rules are schemes for updating the synapse weight values ​​of a genetic algorithm.
+III - Training is the way in which the neural computational system learns about the information it will need in order to solve certain problems.
+
+It is correct to say that:
+I and III are true
+i is true
+I and II are true
+III true   TRUE 
+II is true
+
+The knowledge learned by an artificial neural network is stored:
+wrong in neurons
+In the inner layers
+On the output layer
+In the input layer
+Wrong in the weights of the network connections  TRUE 
+
+Artificial Neural Networks are computational techniques that present a mathematical model inspired by the neural structure of intelligent organisms, so it can be said that a connectionist model: (Choose the CORRECT alternative):
+They deal with non-symbolically represented knowledge and process information in a parallel and distributed way.  TRUE 
+They employ a parallel and structured search strategy based on the mechanisms of natural selection.
+They perform approximate reasoning, with imprecise propositions and described in natural language.
+They deal with explicit knowledge, symbolically represented and generalize learned knowledge.
+They are inspired by the behavior of the human brain and model the imprecise modes of approximate reasoning.
+
+Regarding the connectionist model, we can say that:
+Has part of the knowledge needed to solve the problem.
+Each problem requires the designer to make adequate choices to enable the correct evolution of solutions over successive generations.
+Each problem does not necessarily require the designer to make adequate choices to enable the correct evolution of solutions over successive generations.
+It has no stored knowledge until it is trained to solve a problem. TRUE
+Have all the knowledge needed to solve the problem.
