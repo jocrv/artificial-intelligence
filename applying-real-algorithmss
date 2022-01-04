@@ -1,0 +1,27 @@
+
+Operation with mutation: function with objective topic 
+Evaluation function or objective function or fitness function, is a specific function that represents the set of all possible combinations of the components of a solution.
+// using all maximum values for function
+
+Consider a genetic algorithm that operates on three individuals A, B, C, described respectively by the binary vectors A = [11011000], B = [00010000], C = [11001101], generating two new individuals D = [11011101] and E = [11001000] The new individuals were generated through:
+Crossover through the midpoint of individuals A and C. TRUE 
+Crossover through the midpoint of individuals A and C followed by a one-bit mutation in each new individual (D and E).
+Crossover through the midpoint of individuals B and C followed by a one-bit mutation in each new individual (D and E).
+Crossover through the midpoint of individuals A and B followed by a one-bit mutation in each new individual (D and E).
+Crossover through the midpoint of individuals A and B.
+
+
+
+Consider the problem of maximizing the function f(x) = 3x+2 in domain [0, 127], using an integer representation for x. How many bits should the chromosome consist of?
+16
+3
+9
+7 TRUE 
+128
+
+In a selection process using, for example, the addicted roulette method, which of the individuals will have the highest aptitude value for the objective function f(x)= 1/x ?
+110011
+111001
+001101 true
+111000
+011011
