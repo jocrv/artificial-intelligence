@@ -1,0 +1,85 @@
+In Multi-Layer Perceptrons (MLP) networks with the Backpropagation algorithm, why is such training called supervised training?
+a weight supervision algorithm is used during training
+inputs and outputs are scrambled by the supervisor before training
+the entire process must be supervised by an expert.
+the desired outputs are provided and used to correct the weights   TRUE 
+responses are reviewed using the validation set.
+
+Regarding the data set used by a supervised learning artificial neural network, analyze the following statements:
+
+I - The updating of the neuron weights occurs in both the training and validation sets.
+
+II - The training set must be presented to the network several times, that is, at different times.
+
+III - The validation set is used to test the generalizability of the network, that is, if it has learned patterns by testing data not present in the training set.
+
+Check the correct alternative:
+
+Only statement III is correct.
+Only statement I is correct.
+Statements I and II are correct
+Statements II and III are correct   TRUE 
+Only statement II is correct.
+
+Consider the network with McCulloch-Pitts neurons below, in which each neuron has the threshold q = 0. For the input value pairs (xA and xB) of (0.0), (0.1), (1, 0) and (1,1), what would be the respective output values ​​of neuron z3?
+
+ 
+
+ 
+
+(0,1,0,1)
+(1,1,1.0)
+(1,0,0,1)
+(0.1,1.0)   true 
+(0.0,0.1)
+
+In Multilayer Perceptrons (MLP) networks with the Backpropagation algorithm, what is the main function of the moment term applied to the weight adjustment formula?
+To accelerate convergence using a multiplier factor arbitrated by the algorithm
+To explore multiple minimum points of the function
+To stop the convergence to the minimum value of the error function, since a slower descent prevents going beyond the desired point
+To curb convergence, inhibiting the attraction of local minimums and allowing convergence to the global minimum
+To accelerate convergence using the correction trend from the previous cycle  TRUE 
+
+In Multi-Layer Perceptron-type networks (MLP) with the Backpropagation algorithm, what can entail for the quality of the trained network, training beyond the desired point?
+I - The network begins to confuse input patterns
+II - The network becomes better and more generic, but there is a large computational cost
+III - Decrease in the generalization capacity of the network
+
+According to the approach, check the CORRECT option:
+Only item III is correct.   TRUE 
+Only item I is correct.
+Only item II is correct.
+Only items I and III are correct.
+Only items I and II are correct.
+
+The Backpropagation training algorithm consists of a sequence of phases.
+Check the INCORRECT alternative on this algorithm.
+Calculate the error in the output of the network, which is equivalent to a difference between the output value obtained from the network and the desired output value.
+Present a pattern on the input layer and calculate its weight value on the output layer.  TRUE
+If a desired maximum error has not been reached, return to the initial step for the next iteration (show all patterns again).
+Modify the synaptic connection weights in order to minimize the average error, considering all sample standards.
+Back-propagate the error in the network by calculating how changes in weights affect the error.
+
+Analyze the following statements about neural networks without directed cycles, where n is the number of neurons and m the number of connections.
+I. Once trained, the use of the network consists of applying an input and waiting until convergence occurs for the output to be obtained.
+II. The training process consists of obtaining a vector in at least m -dimensional space. This vector is obtained through an optimization process that seeks to minimize the error on the training instances.
+III. The training process consists of obtaining a vector in at least m -dimensional space. This vector is obtained through an optimization process that seeks to minimize the generalization error.
+The analysis allows us to conclude that:
+
+Choose the correct alternative
+
+Only statements II and III are correct.
+Only statement II is correct.   TRUE 
+Only statements I and II are correct.
+All statements are correct.
+Only statement III is correct.
+
+Consider the network with McCulloch-Pitts neurons below, in which each neuron has the threshold q = 0. For the input value pairs (x1 and x2) of (0.0), (0.1), (1, 0) and (1,1), what would be the respective output values ​​of neuron z3?
+
+
+
+(1,0,0,1)
+(0.1,1.0)
+(0.0,0.1)
+(0,1,0,1)
+(0.1,1.1)
